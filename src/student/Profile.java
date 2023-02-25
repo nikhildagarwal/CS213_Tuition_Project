@@ -1,19 +1,31 @@
 package student;
 
 /**
- * Class to implement student.Profile Object.
+ * Class to implement Profile Object.
  * Holds LastName, FirstName, and DoB as parameters.
  * Contains methods to fetch profile values from outside this class,
  * as well as methods that override equals, toString, and compareTo.
  * @author Nikhil Agarwal, Hyeon Oh
  */
 public class Profile implements Comparable<Profile>{
+
+    /**
+     * Last name
+     */
     private String lname;
+
+    /**
+     * First name
+     */
     private String fname;
+
+    /**
+     * Date of birth (mm/dd/yyyy)
+     */
     private Date dob;
 
     /**
-     * Constructor for student.Profile Object.
+     * Constructor for Profile Object.
      * @param lname Last Name of profile.
      * @param fname First Name of profile.
      * @param dob DoB of profile.
@@ -25,21 +37,21 @@ public class Profile implements Comparable<Profile>{
     }
 
     /**
-     * @return Gets last name of student.Profile Object.
+     * @return Gets last name of Profile Object.
      */
     public String getLastName(){
         return lname;
     }
 
     /**
-     * @return Gets first name of student.Profile Object.
+     * @return Gets first name of Profile Object.
      */
     public String getFirstName(){
         return fname;
     }
 
     /**
-     * @return Gets date of student.Profile Object.
+     * @return Gets date of Profile Object.
      */
     public Date getDate(){
         return dob;
@@ -47,7 +59,7 @@ public class Profile implements Comparable<Profile>{
 
     /**
      * Overrides toString method from Java Object class.
-     * @return student.Profile as string printed as: firstName lastName doB
+     * @return Profile as string printed as: firstName lastName doB
      */
     @Override
     public String toString(){
@@ -57,7 +69,7 @@ public class Profile implements Comparable<Profile>{
     /**
      * Overrides equals method from Java Object class.
      * @param obj object to be checked.
-     * @return true if object equals student.Profile, false if otherwise.
+     * @return true if object equals Profile, false if otherwise.
      */
     @Override
     public boolean equals(Object obj){
@@ -93,4 +105,12 @@ public class Profile implements Comparable<Profile>{
         }
     }
 
+    public static void main(String[] args){
+        Date myDOB = new Date("4/22/2002");
+        Profile myProfile = new Profile("Agarwal","Nikhil",myDOB);
+        System.out.println(myProfile);
+        System.out.println(myProfile.getDate());
+        System.out.println(myProfile.getFirstName());
+        System.out.println(myProfile.getLastName());
+    }
 }

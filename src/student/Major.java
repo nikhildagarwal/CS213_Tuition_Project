@@ -3,7 +3,7 @@ package student;
 import java.util.StringTokenizer;
 
 /**
- * student.Major objects that hold major codes and the corresponding school @ Rutgers.
+ * Major objects that hold major codes and the corresponding school @ Rutgers.
  * Using this class we can check if a certain school is a valid school @ Rutgers.
  * Compare two Majors to each other based on school (alphabetically) and then major code (numerically).
  * @author Nikhil Agarwal, Hyeon Oh
@@ -15,11 +15,18 @@ public enum Major {
     ITI("04:547","SC&I"),
     BAIT("33:136","RBS");
 
+    /**
+     * school and department code of each major
+     */
     private final String majorCode;
+
+    /**
+     * school that each major is a part of
+     */
     private final String school;
 
     /**
-     * Constructor for student.Major object.
+     * Constructor for Major object.
      * @param majorCode corresponding major code for a major. Ex: CS -> 01:198
      * @param school corresponding school for major. EX: CS -> SAS
      */
@@ -96,4 +103,10 @@ public enum Major {
         return Integer.parseInt(codeTokens.nextToken());
     }
 
+    public static void main(String[] args){
+        System.out.println(Major.CS);
+        System.out.println(Major.CS.getDepartmentCode(Major.CS.getMajorCode()));
+        System.out.println(Major.CS.getMajorCode());
+        System.out.println(Major.CS.getSchool());
+    }
 }
