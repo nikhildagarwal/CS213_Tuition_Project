@@ -106,6 +106,8 @@ Dylan Perez 12/1/2000 (04:547 ITI SC&I) credits completed: 99 (Senior)(non-resid
 Bill Scanlan 5/1/1999 (01:198 CS SAS) credits completed: 120 (Senior)(non-resident)(international)
 Paul Siegel 5/1/2000 (01:198 CS SAS) credits completed: 90 (Senior)(resident)
 * end of roster *
+
+
 John Doe 4/3/2003 removed from the roster.
 John Doe 4/3/2003 is not in the roster.
 ** Student roster sorted by standing **

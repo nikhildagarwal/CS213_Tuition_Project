@@ -11,6 +11,7 @@ import java.io.File;
  */
 public class TuitionManager {
     public static final int LENGTH_RESIDENT_INPUT = 6;
+    public static final int LENGTH_INTERNATIONAL_INPUT = 6;
     public static final int LENGTH_TRISTATE_INPUT = 7;
     public static final int LENGTH_TRISTATE_INPUT_NO_STATE = 6;
     public static final int STARTING_SCHOLARSHIP = 0;
@@ -110,12 +111,56 @@ public class TuitionManager {
                         processAddResident(tokens,roster); break;
                     case "AT":
                         processAddTriState(tokens,roster); break;
+                    case "AI":
+                        processAddInternational(tokens,roster); break;
+                    case "AN":
+                        processAddNonResident(tokens,roster); break;
                     default:
                         System.out.println(tokens[0] + " is an invalid command!");
                 }
             }catch (Exception e){
 
             }
+        }
+    }
+
+    private void processAddNonResident(String[] tokens, Roster roster){
+        if(tokens.length<LENGTH_RESIDENT_INPUT){
+            System.out.println("Missing data in line command.");
+            return;
+        }
+        if(studentChecker(tokens)){
+            Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
+            NonResident nonResident = new NonResident(profile,grabMajorString(tokens[MAJOR_INDEX]),Integer.parseInt(tokens[CREDITS_INDEX]));
+            if(nonResident.isValidStudent()){
+                if(roster.contains(nonResident)){
+                    System.out.println(nonResident.getProfile()+" is already in the roster.");
+                }else{
+                    roster.add(nonResident);
+                    System.out.println(nonResident.getProfile()+" added to the roster.");
+                }
+            }
+        }
+    }
+
+    private void processAddInternational(String[] tokens, Roster roster){
+        if(tokens.length<LENGTH_INTERNATIONAL_INPUT){
+            System.out.println("Missing data in line command");
+            return;
+        }
+        International international = null;
+        if(studentChecker(tokens)){
+            Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
+            if(tokens.length>LENGTH_INTERNATIONAL_INPUT){
+                boolean temp = false;
+                if(tokens[ABROAD_INDEX].equals("true")){
+                    temp = true;
+                }
+                international = new International(profile,grabMajorString(tokens[MAJOR_INDEX]),Integer.parseInt(tokens[CREDITS_INDEX]),temp);
+            }else{
+                international = new International(profile,grabMajorString(tokens[MAJOR_INDEX]),Integer.parseInt(tokens[CREDITS_INDEX]));
+            }
+            roster.add(international);
         }
     }
 
