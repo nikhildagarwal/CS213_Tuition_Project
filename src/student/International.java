@@ -16,12 +16,11 @@ public class International extends NonResident{
 
     @Override
     public String toString(){
-        if(isStudyAbroad = false){
+        if(isStudyAbroad == false){
             return super.toString()+"(international)";
         }else{
             return super.toString()+"(international:study abroad)";
         }
-
     }
 
     public static void main(String[] args){

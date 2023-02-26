@@ -1,6 +1,5 @@
 package student;
 
-import java.util.Arrays;
 import java.util.Scanner;
 import java.io.File;
 
@@ -10,7 +9,8 @@ import java.io.File;
  * @author Nikhil Agarwal, Hyeon Oh
  */
 public class TuitionManager {
-
+    public static final int LENGTH_RESIDENT_INPUT = 6;
+    public static final int STARTING_SCHOLARSHIP = 0;
     public static final int STATE_INDEX = 6;
     public static final int ABROAD_INDEX = 6;
 
@@ -108,6 +108,9 @@ public class TuitionManager {
                     case "Q":
                         System.out.println("Roster Manager terminated.");
                         return;
+                    case "AR":
+                        processAddResident(tokens,roster);
+                        break;
                     default:
                         System.out.println(tokens[0] + " is an invalid command!");
                 }
@@ -115,6 +118,46 @@ public class TuitionManager {
 
             }
         }
+    }
+
+    private void processAddResident(String[] tokens, Roster roster){
+        if(tokens.length<LENGTH_RESIDENT_INPUT){
+            System.out.println("Missing data in line command");
+            return;
+        }
+        Date dob = new Date(tokens[DATE_INDEX]);
+        if(!dob.isValid()){
+            System.out.println("DOB invalid: "+dob+" not a valid calendar date!");
+            return;
+        }
+        if(!dob.isValidAge()){
+            System.out.println("DOB invalid: "+dob+" younger than 16 years old.");
+            return;
+        }
+        Major major = grabMajor(tokens);
+        if(major == null){
+            return;
+        }
+        try{
+            if(Integer.parseInt(tokens[CREDITS_INDEX]) < MIN_CREDITS){
+                System.out.println("Credits completed invalid: cannot be negative!");
+                return;
+            }
+        }catch(Exception e){
+            System.out.println("Credits completed invalid: not an integer!");
+            return;
+        }
+        Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],dob);
+        Resident resident = new Resident(profile,major,Integer.parseInt(tokens[CREDITS_INDEX]),STARTING_SCHOLARSHIP);
+        if(resident.isValidStudent()){
+            if(roster.contains(resident)){
+                System.out.println(resident.getProfile()+" is already in the roster.");
+            }else{
+                roster.add(resident);
+                System.out.println(resident.getProfile()+" added to the roster.");
+            }
+        }
+
     }
 
     /**
@@ -240,7 +283,7 @@ public class TuitionManager {
                         roster.add(nonResident);
                 }
             }
-            System.out.println("Student loaded to the roster.");
+            System.out.println("Students loaded to the roster.");
         }catch (Exception e){
 
         }
