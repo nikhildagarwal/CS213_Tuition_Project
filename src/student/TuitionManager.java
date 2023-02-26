@@ -1,5 +1,6 @@
 package student;
 
+import javax.swing.plaf.nimbus.State;
 import java.util.Scanner;
 import java.io.File;
 
@@ -10,6 +11,8 @@ import java.io.File;
  */
 public class TuitionManager {
     public static final int LENGTH_RESIDENT_INPUT = 6;
+    public static final int LENGTH_TRISTATE_INPUT = 7;
+    public static final int LENGTH_TRISTATE_INPUT_NO_STATE = 6;
     public static final int STARTING_SCHOLARSHIP = 0;
     public static final int STATE_INDEX = 6;
     public static final int ABROAD_INDEX = 6;
@@ -85,20 +88,16 @@ public class TuitionManager {
             try{
                 switch(tokens[CODE_INDEX]){
                     case "LS":
-                        processLS(roster);
-                        break;
+                        processLS(roster); break;
                     case "R":
                         //processRemove(tokens,roster);
                         break;
                     case "P":
-                        processPrint(roster,FULL_ROSTER,ALL_SCHOOLS);
-                        break;
+                        processPrint(roster,FULL_ROSTER,ALL_SCHOOLS); break;
                     case "PS":
-                        processPrintStanding(roster);
-                        break;
+                        processPrintStanding(roster); break;
                     case "PC":
-                        processPrintMajor(roster);
-                        break;
+                        processPrintMajor(roster); break;
                     case "L":
                         //processSchoolList(tokens,roster);
                         break;
@@ -106,11 +105,11 @@ public class TuitionManager {
                         //processChange(tokens,roster);
                         break;
                     case "Q":
-                        System.out.println("Roster Manager terminated.");
-                        return;
+                        System.out.println("Roster Manager terminated."); return;
                     case "AR":
-                        processAddResident(tokens,roster);
-                        break;
+                        processAddResident(tokens,roster); break;
+                    case "AT":
+                        processAddTriState(tokens,roster); break;
                     default:
                         System.out.println(tokens[0] + " is an invalid command!");
                 }
@@ -120,44 +119,52 @@ public class TuitionManager {
         }
     }
 
-    private void processAddResident(String[] tokens, Roster roster){
-        if(tokens.length<LENGTH_RESIDENT_INPUT){
-            System.out.println("Missing data in line command");
+    private void processAddTriState(String[] tokens, Roster roster){
+        if(tokens.length==LENGTH_TRISTATE_INPUT_NO_STATE){
+            System.out.println("Missing the state code.");
             return;
         }
-        Date dob = new Date(tokens[DATE_INDEX]);
-        if(!dob.isValid()){
-            System.out.println("DOB invalid: "+dob+" not a valid calendar date!");
+        if(tokens.length<LENGTH_TRISTATE_INPUT){
+            System.out.println("Missing data in command line.");
             return;
         }
-        if(!dob.isValidAge()){
-            System.out.println("DOB invalid: "+dob+" younger than 16 years old.");
+        String upperCaseState = tokens[STATE_INDEX].toUpperCase();
+        if(!upperCaseState.equals("NY") && !upperCaseState.equals("CT")){
+            System.out.println(tokens[STATE_INDEX]+": Invalid state code.");
             return;
         }
-        Major major = grabMajor(tokens);
-        if(major == null){
-            return;
-        }
-        try{
-            if(Integer.parseInt(tokens[CREDITS_INDEX]) < MIN_CREDITS){
-                System.out.println("Credits completed invalid: cannot be negative!");
-                return;
-            }
-        }catch(Exception e){
-            System.out.println("Credits completed invalid: not an integer!");
-            return;
-        }
-        Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],dob);
-        Resident resident = new Resident(profile,major,Integer.parseInt(tokens[CREDITS_INDEX]),STARTING_SCHOLARSHIP);
-        if(resident.isValidStudent()){
-            if(roster.contains(resident)){
-                System.out.println(resident.getProfile()+" is already in the roster.");
-            }else{
-                roster.add(resident);
-                System.out.println(resident.getProfile()+" added to the roster.");
+        if(studentChecker(tokens)){
+            Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
+            TriState triState = new TriState(profile,grabMajorString(tokens[MAJOR_INDEX]),Integer.parseInt(tokens[CREDITS_INDEX]),tokens[STATE_INDEX]);
+            if(triState.isValidStudent()){
+                if(roster.contains(triState)){
+                    System.out.println(triState.getProfile()+" is already in the roster.");
+                }else{
+                    roster.add(triState);
+                    System.out.println(triState.getProfile()+" added to the roster.");
+                }
             }
         }
 
+    }
+
+    private void processAddResident(String[] tokens, Roster roster){
+        if(tokens.length<LENGTH_RESIDENT_INPUT){
+            System.out.println("Missing data in line command.");
+            return;
+        }
+        if(studentChecker(tokens)){
+            Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
+            Resident resident = new Resident(profile,grabMajorString(tokens[MAJOR_INDEX]),Integer.parseInt(tokens[CREDITS_INDEX]),STARTING_SCHOLARSHIP);
+            if(resident.isValidStudent()){
+                if(roster.contains(resident)){
+                    System.out.println(resident.getProfile()+" is already in the roster.");
+                }else{
+                    roster.add(resident);
+                    System.out.println(resident.getProfile()+" added to the roster.");
+                }
+            }
+        }
     }
 
     /**
@@ -251,6 +258,32 @@ public class TuitionManager {
             }
         }
         return newLine;
+    }
+
+    private boolean studentChecker(String[] tokens){
+        Date dob = new Date(tokens[DATE_INDEX]);
+        if(!dob.isValid()){
+            System.out.println("DOB invalid: "+dob+" not a valid calendar date!");
+            return false;
+        }
+        if(!dob.isValidAge()){
+            System.out.println("DOB invalid: "+dob+" younger than 16 years old.");
+            return false;
+        }
+        Major major = grabMajor(tokens);
+        if(major == null){
+            return false;
+        }
+        try{
+            if(Integer.parseInt(tokens[CREDITS_INDEX]) < MIN_CREDITS){
+                System.out.println("Credits completed invalid: cannot be negative!");
+                return false;
+            }
+        }catch(Exception e){
+            System.out.println("Credits completed invalid: not an integer!");
+            return false;
+        }
+        return true;
     }
 
     private void processLS(Roster roster){
