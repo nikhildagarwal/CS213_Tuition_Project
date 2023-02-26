@@ -5,8 +5,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Resident extends Student {
     private int scholarship;
 
-    public Resident(Profile profile, Major major, int creditEnrolled, int scholarship){
-        super(profile,major,creditEnrolled);
+    public Resident(Profile profile, Major major, int creditCompleted, int scholarship){
+        super(profile,major,creditCompleted);
         this.scholarship = scholarship;
     }
 

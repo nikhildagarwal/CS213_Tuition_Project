@@ -225,8 +225,8 @@ public class Roster {
     private void rosterStandingSort(Student[] roster){
         int[] compareables = new int[size-1];
         for(int i = 0; i < size - 1; i++){
-            String grade1 = roster[i].getStanding(roster[i].getCreditEnrolled());
-            String grade2 = roster[i+1].getStanding(roster[i+1].getCreditEnrolled());
+            String grade1 = roster[i].getStanding(roster[i].getcreditCompleted());
+            String grade2 = roster[i+1].getStanding(roster[i+1].getcreditCompleted());
             compareables[i] = grade1.compareTo(grade2);
         }
         while(containsPositive(compareables)) {
@@ -236,8 +236,8 @@ public class Roster {
                 }
             }
             for(int i = 0; i<compareables.length; i++){
-                String major1 = roster[i].getStanding(roster[i].getCreditEnrolled());
-                String major2 = roster[i+1].getStanding(roster[i+1].getCreditEnrolled());
+                String major1 = roster[i].getStanding(roster[i].getcreditCompleted());
+                String major2 = roster[i+1].getStanding(roster[i+1].getcreditCompleted());
                 compareables[i] = major1.compareTo(major2);
             }
         }

@@ -14,7 +14,7 @@ public abstract class Student implements Comparable<Student>{
     /**
      * number of credits completed (int)
      */
-    private int creditEnrolled;
+    private int creditCompleted;
 
     /**
      * Number of credits required to be considered sophomore.
@@ -35,12 +35,12 @@ public abstract class Student implements Comparable<Student>{
      * Constructor to initialize the Student Object.
      * @param profile Profile Object of Student.
      * @param major Major of the student.
-     * @param creditEnrolled the number of credits that a student has completed.
+     * @param creditCompleted the number of credits that a student has completed.
      */
-    public Student(Profile profile,Major major, int creditEnrolled){
+    public Student(Profile profile,Major major, int creditCompleted){
         this.profile = profile;
         this.major = major;
-        this.creditEnrolled = creditEnrolled;
+        this.creditCompleted = creditCompleted;
     }
 
     /**
@@ -49,7 +49,7 @@ public abstract class Student implements Comparable<Student>{
      */
     @Override
     public String toString(){
-        return profile.getFirstName() + " " + profile.getLastName() + " " + profile.getDate().toString() + " " + getCode_School(major) + " credits completed: " + creditEnrolled + " " + getStanding(creditEnrolled);
+        return profile.getFirstName() + " " + profile.getLastName() + " " + profile.getDate().toString() + " " + getCode_School(major) + " credits completed: " + creditCompleted + " " + getStanding(creditCompleted);
     }
 
     /**
@@ -76,18 +76,18 @@ public abstract class Student implements Comparable<Student>{
 
     /**
      * Checks how many credits a student has completed and returns the standing of the student.
-     * @param creditEnrolled number of credits student has completed.
+     * @param creditCompleted number of credits student has completed.
      * @return Freshman if creditsCompleted<30,
      *         Sophomore if 30<=creditsCompleted<60,
      *         Junior if 60<=creditsCompleted<90,
      *         Senior if creditsCompleted>=90
      */
-    public String getStanding(int creditEnrolled){
-        if(creditEnrolled<SOPHOMORE){
+    public String getStanding(int creditCompleted){
+        if(creditCompleted<SOPHOMORE){
             return "(Freshman)";
-        }else if(creditEnrolled >= SOPHOMORE && creditEnrolled < JUNIOR){
+        }else if(creditCompleted >= SOPHOMORE && creditCompleted < JUNIOR){
             return "(Sophomore)";
-        }else if(creditEnrolled >= JUNIOR && creditEnrolled < SENIOR){
+        }else if(creditCompleted >= JUNIOR && creditCompleted < SENIOR){
             return "(Junior)";
         }else{
             return "(Senior)";
@@ -119,8 +119,8 @@ public abstract class Student implements Comparable<Student>{
     /**
      * @return return number of Credits that the student has completed.
      */
-    public int getCreditEnrolled(){
-        return creditEnrolled;
+    public int getcreditCompleted(){
+        return creditCompleted;
     }
 
     /**
@@ -128,7 +128,7 @@ public abstract class Student implements Comparable<Student>{
      * @return true if the student is valid to add to the roster, false otherwise.
      */
     public boolean isValidStudent(){
-        return profile.getDate().isValid() && profile.getDate().isValidAge() && creditEnrolled >= 0 && major != null;
+        return profile.getDate().isValid() && profile.getDate().isValidAge() && creditCompleted >= 0 && major != null;
     }
 
     /**
