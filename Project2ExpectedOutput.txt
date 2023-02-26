@@ -60,17 +60,19 @@ DOB invalid: 13/31/2003 not a valid calendar date!
 John Doe 1/20/2003 is already in the roster.
 Credits completed invalid: not an integer!
 Credits completed invalid: cannot be negative!
+
+
 Missing data in command line.
 XX: Invalid state code.
 Missing the state code.
-
-
 Emma Miller 2/28/2003 added to the roster.
 Emma Miller 2/28/2003 is already in the roster.
 Sunny Patel 9/2/2005 added to the roster.
 Emma Miller 2/28/2003 is already in the roster.
 Emily Johnson 6/1/2005 added to the roster.
 Sophia Jones 12/31/2001 added to the roster.
+
+
 Missing data in line command.
 Ava Lin 1/1/2001 added to the roster.
 Ava Lin 1/1/2001 is already in the roster.
