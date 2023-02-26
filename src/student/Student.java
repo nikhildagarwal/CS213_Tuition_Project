@@ -74,6 +74,10 @@ public abstract class Student implements Comparable<Student>{
         return profile.compareTo(student.getProfile());
     }
 
+
+
+    public abstract boolean isResident();
+
     /**
      * Checks how many credits a student has completed and returns the standing of the student.
      * @param creditCompleted number of credits student has completed.
@@ -139,6 +143,8 @@ public abstract class Student implements Comparable<Student>{
     private String getCode_School(Major major){
         return "(" + major.getMajorCode() + " " + major + " " + major.getSchool() + ")";
     }
+
+
 
 
 }

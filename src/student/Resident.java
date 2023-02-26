@@ -15,6 +15,13 @@ public class Resident extends Student {
         return super.toString() + " (resident)";
     }
 
+    @Override
+    public boolean isResident(){
+        return true;
+    }
+
+
+
     public static void main (String[] args){
         Date d = new Date();
         Profile p = new Profile("Funcheon","Hope",d);
