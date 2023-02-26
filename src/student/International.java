@@ -4,6 +4,11 @@ public class International extends NonResident{
 
     public boolean isStudyAbroad;
 
+    public International(Profile profile,Major major, int creditCompleted){
+        super(profile,major,creditCompleted);
+        this.isStudyAbroad = false;
+    }
+
     public International(Profile profile, Major major, int creditCompleted, boolean isStudyAbroad){
         super(profile,major,creditCompleted);
         this.isStudyAbroad = isStudyAbroad;
@@ -11,7 +16,12 @@ public class International extends NonResident{
 
     @Override
     public String toString(){
-        return super.toString()+" (international)";
+        if(isStudyAbroad = false){
+            return super.toString()+"(international)";
+        }else{
+            return super.toString()+"(international:study abroad)";
+        }
+
     }
 
     public static void main(String[] args){

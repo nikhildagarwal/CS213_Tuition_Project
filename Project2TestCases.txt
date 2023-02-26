@@ -30,6 +30,7 @@ AN
 LS studentList.txt
 P
 
+
 AR John Doe 9/2/2022 EE 10
 AR John Doe 1/2/2007 EE 20
 AR John Doe 3/20/2007 EE 20 

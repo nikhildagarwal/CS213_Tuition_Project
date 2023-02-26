@@ -11,7 +11,7 @@ public class TriState extends NonResident{
 
     @Override
     public String toString(){
-        return super.toString()+" (tri-state:"+state+")";
+        return super.toString()+"(tri-state:"+state+")";
     }
 
     public static void main (String[] args){

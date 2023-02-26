@@ -27,6 +27,8 @@ Missing data in line command.
 Missing data in line command.
 Missing data in line command.
 Missing data in line command.
+
+
 Students loaded to the roster.
 ** Student roster sorted by last name, first name, DOB **
 Roy Brooks 8/8/1999 (01:640 MATH SAS) credits completed: 111 (Senior)(non-resident)(tri-state:CT)
@@ -44,6 +46,8 @@ April March 3/31/2000 (33:136 BAIT RBS) credits completed: 0 (Freshman)(non-resi
 Bill Scanlan 5/1/1999 (01:198 CS SAS) credits completed: 120 (Senior)(non-resident)(international)
 Paul Siegel 5/1/2000 (01:198 CS SAS) credits completed: 90 (Senior)(resident)
 * end of roster *
+
+
 DOB invalid: 9/2/2022 younger than 16 years old.
 John Doe 1/2/2007 is already in the roster.
 DOB invalid: 3/20/2007 younger than 16 years old.
