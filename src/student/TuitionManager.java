@@ -11,6 +11,7 @@ import java.io.File;
  */
 public class TuitionManager {
     public static final int LENGTH_RESIDENT_INPUT = 6;
+    public static final int LENGTH_INTERNATIONAL_INPUT_WITH_ABROAD = 7;
     public static final int LENGTH_INTERNATIONAL_INPUT = 6;
     public static final int LENGTH_TRISTATE_INPUT = 7;
     public static final int LENGTH_TRISTATE_INPUT_NO_STATE = 6;
@@ -145,22 +146,29 @@ public class TuitionManager {
 
     private void processAddInternational(String[] tokens, Roster roster){
         if(tokens.length<LENGTH_INTERNATIONAL_INPUT){
-            System.out.println("Missing data in line command");
+            System.out.println("Missing data in line command.");
             return;
         }
-        International international = null;
         if(studentChecker(tokens)){
             Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
-            if(tokens.length>LENGTH_INTERNATIONAL_INPUT){
+            International international = new International(profile,grabMajorString(tokens[MAJOR_INDEX]),Integer.parseInt(tokens[CREDITS_INDEX]));
+            try{
                 boolean temp = false;
                 if(tokens[ABROAD_INDEX].equals("true")){
                     temp = true;
                 }
                 international = new International(profile,grabMajorString(tokens[MAJOR_INDEX]),Integer.parseInt(tokens[CREDITS_INDEX]),temp);
-            }else{
-                international = new International(profile,grabMajorString(tokens[MAJOR_INDEX]),Integer.parseInt(tokens[CREDITS_INDEX]));
+            }catch (Exception e){
+
             }
-            roster.add(international);
+            if(international.isValidStudent()){
+                if(roster.contains(international)){
+                    System.out.println(international.getProfile()+" is already in the roster.");
+                }else{
+                    roster.add(international);
+                    System.out.println(international.getProfile()+" added to the roster.");
+                }
+            }
         }
     }
 
@@ -180,7 +188,7 @@ public class TuitionManager {
         }
         if(studentChecker(tokens)){
             Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
-            TriState triState = new TriState(profile,grabMajorString(tokens[MAJOR_INDEX]),Integer.parseInt(tokens[CREDITS_INDEX]),tokens[STATE_INDEX]);
+            TriState triState = new TriState(profile,grabMajorString(tokens[MAJOR_INDEX]),Integer.parseInt(tokens[CREDITS_INDEX]),tokens[STATE_INDEX].toUpperCase());
             if(triState.isValidStudent()){
                 if(roster.contains(triState)){
                     System.out.println(triState.getProfile()+" is already in the roster.");
