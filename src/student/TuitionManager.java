@@ -122,13 +122,25 @@ public class TuitionManager {
                         processPrintEnrollment(enrollment); break;
                     case "E":
                         processEnroll(tokens,enrollment,roster); break;
+                    case "D":
+                        processDrop(tokens,enrollment); break;
                     default:
                         System.out.println(tokens[0] + " is an invalid command!");
                 }
-            }catch (Exception e){
-
-            }
+            }catch (Exception e){}
         }
+    }
+
+    private void processDrop(String[] tokens, Enrollment enrollment){
+        Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
+        EnrollStudent enrollStudent = new EnrollStudent(profile,0);
+        if(!enrollment.contains(enrollStudent)){
+            System.out.println(profile+" is not enrolled.");
+            return;
+        }
+        enrollment.remove(enrollStudent);
+        System.out.println(profile+" dropped.");
+
     }
 
     private void processEnroll(String[] tokens, Enrollment enrollment, Roster roster){
@@ -149,6 +161,17 @@ public class TuitionManager {
         if(!roster.contains(student)){
             System.out.println("Cannot enroll: "+ profile +" is not in the roster.");
             return;
+        }
+        if(roster.getStudent(profile).isValid(creditsEnrolled)){
+            if(enrollment.contains(enrollStudent)){
+                enrollment.getStudent(enrollStudent).changeCredits(creditsEnrolled);
+                System.out.println(profile + " enrolled "+creditsEnrolled+" credits");
+            }else{
+                enrollment.add(enrollStudent);
+                System.out.println(profile + " enrolled "+creditsEnrolled+" credits");
+            }
+        }else{
+            System.out.println(roster.getStudent(profile).getType()+" "+creditsEnrolled+": invalid credit hours.");
         }
 
 

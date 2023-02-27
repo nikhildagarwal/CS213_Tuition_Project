@@ -143,6 +143,8 @@ public abstract class Student implements Comparable<Student>{
         return profile.getDate().isValid() && profile.getDate().isValidAge() && creditCompleted >= 0 && major != null;
     }
 
+    public abstract String getType();
+
     /**
      * Helper method to format output of the Major portion of our student object.
      * @param major major to be formatted to string.

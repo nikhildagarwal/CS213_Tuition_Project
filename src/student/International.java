@@ -27,8 +27,16 @@ public class International extends NonResident{
     }
 
     @Override
+    public String getType(){
+        if(isStudyAbroad){
+            return "(International student study abroad)";
+        }
+        return "(International student)";
+    }
+
+    @Override
     public boolean isValid(int creditsEnrolled){
-        if(isStudyAbroad==true){
+        if(isStudyAbroad){
             if(creditsEnrolled>=MIN_CREDITS_ENROLLED && creditsEnrolled<=MAX_STUDY_ABROAD_CREDITS){
                 return true;
             }else{
