@@ -1,5 +1,13 @@
 package student;
 
+/**
+ * Implementation of abstract class Student
+ * Contains profile, major , and creditCompleted as parameters
+ * Contains abstract methods tuitionDue and isResident
+ * Contains methods overrided methods such as toString, equals, compareTo
+ * Contains methods to check student standing, if the student is valid, and getter methods
+ * @author Nikhil Agarwal, Hyeon Oh
+ */
 public abstract class Student implements Comparable<Student>{
     /**
      * Profile object

@@ -1,8 +1,8 @@
 package student;
 
 /**
- * Implementing subclass Resident that extends Student
- * Contains overrided methods
+ * Implementation of the subclass Resident that extends superclass Student
+ * Contains overrided methods toString, getType, isResident, tuitionDue
  * @author Nikhil Agarwal, Hyeon Oh
  */
 public class Resident extends Student {
@@ -48,11 +48,20 @@ public class Resident extends Student {
         return true;
     }
 
+    /**
+     * gets the type of student
+     * @return returns "(Resident)" which when getType() is invoked
+     */
     @Override
     public String getType(){
         return "(Resident)";
     }
 
+    /**
+     * Calculates the student's tuition
+     * @param creditsEnrolled credits enrolled by the student
+     * @return returns tuition of the student
+     */
     @Override
     public double tuitionDue(int creditsEnrolled){
         double tuition = 0;

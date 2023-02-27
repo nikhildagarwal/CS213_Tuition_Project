@@ -1,8 +1,15 @@
 package student;
 
+/**
+ * Implementation of subclass TriState which extends to parent class NonResident
+ * Contains instance variable state
+ * Contains overrided methods such as toString
+ * @author Nikhil Agarwal, Hyeon Oh
+ */
 public class TriState extends NonResident{
 
     private String state;
+
 
     public static final int FULL_TIME = 12;
     public static final int EXTRA_FULL_TIME = 16;
@@ -10,11 +17,24 @@ public class TriState extends NonResident{
     public static final double NY_DISCOUNT = 4000;
     public static final double CT_DISCOUNT = 5000;
 
+
+    /**
+     * Constructor for the TriState subclass object
+     * @param profile profile of the student
+     * @param major major of the student
+     * @param creditCompleted creditCompleted of the student
+     * @param state state of the student
+     */
+
     public TriState(Profile profile, Major major, int creditCompleted, String state){
         super(profile,major,creditCompleted);
         this.state = state;
     }
 
+    /**
+     * Overrides the toString method
+     * @return invokes the parent class toString method and adds the information that the student is from a tri-state
+     */
     @Override
     public String toString(){
         return super.toString()+"(tri-state:"+state+")";

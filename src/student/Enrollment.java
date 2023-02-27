@@ -1,6 +1,15 @@
 package student;
 
+
 import java.text.DecimalFormat;
+
+
+/**
+ * Class to implement Enrollment object
+ * Holds an array of EnrollStudent data type, size of the array
+ * Contains methods to add, remove, print, getStudent , and check if a student is contained in the array
+ * @author Nikhil Agarwal, Hyeon Oh
+ */
 
 public class Enrollment {
 
@@ -11,11 +20,18 @@ public class Enrollment {
     public static final int NOT_FOUND = -1;
     public static final int INITIAL_NUMBER_OF_ELEMENTS = 0;
 
+    /**
+     * Constructor for the Enrollment object
+     */
     public Enrollment(){
         this.enrollStudents = new EnrollStudent[INITIAL_SIZE];
         this.size = INITIAL_NUMBER_OF_ELEMENTS;
     }
 
+    /**
+     * adds a student of EnrollStudent type
+     * @param enrollStudent which is the student to be added
+     */
     public void add(EnrollStudent enrollStudent){
         if(size==enrollStudents.length){
             grow();
@@ -24,6 +40,10 @@ public class Enrollment {
         size++;
     }
 
+    /**
+     * removes a student from the array
+     * @param enrollStudent which is the student to be deleted
+     */
     public void remove(EnrollStudent enrollStudent){
         int index = find(enrollStudent);
         if(index == NOT_FOUND){
@@ -35,6 +55,11 @@ public class Enrollment {
         enrollStudents[size] = null;
     }
 
+    /**
+     * checks the EnrollStudent array to see if the student exists
+     * @param enrollStudent student to be searched for in the array
+     * @return true if the student is in the array, false otherwise
+     */
     public boolean contains(EnrollStudent enrollStudent){
         for(int i = 0;i<size;i++){
             if(enrollStudent.equals(enrollStudents[i])){
@@ -44,6 +69,11 @@ public class Enrollment {
         return false;
     }
 
+    /**
+     * fetches the student from the array
+     * @param enrollStudent which is the student to be fetched
+     * @return returns the student and null if the student is not found
+     */
     public EnrollStudent getStudent(EnrollStudent enrollStudent){
         for(int i = 0;i<size;i++){
             if(enrollStudent.equals(enrollStudents[i])){
@@ -53,11 +83,15 @@ public class Enrollment {
         return null;
     }
 
+    /**
+     * prints the EnrollStudent array
+     */
     public void print(){
         for(int i =0;i<size;i++){
             System.out.println(enrollStudents[i]);
         }
     }
+
 
     public void printTuition(Roster roster){
         for(int i =0;i<size;i++){
@@ -78,6 +112,11 @@ public class Enrollment {
         return substringFront+","+substringBack;
     }
 
+
+    /**
+     * Increases the size of the EnrollStudent array when need be
+     */
+
     private void grow(){
         int prevLength = enrollStudents.length;
         EnrollStudent[] newEnrollment = new EnrollStudent[prevLength+INITIAL_SIZE];
@@ -87,10 +126,19 @@ public class Enrollment {
         enrollStudents = newEnrollment;
     }
 
+    /**
+     * returns the size of the EnrollStudent array
+     * @return size of the array
+     */
     public int size(){
         return size;
     }
 
+    /**
+     * looks for the student in the EnrollStudent array
+     * @param enrollStudent which is the student to be searched
+     * @return returns the index of the student found in the array, returns NOT_FOUND otherwise
+     */
     private int find(EnrollStudent enrollStudent){
         for(int i = 0;i<size;i++){
             if(enrollStudent.equals(enrollStudents[i])){

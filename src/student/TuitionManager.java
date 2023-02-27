@@ -132,7 +132,7 @@ public class TuitionManager {
     }
 
     private void processScholarship(String[] tokens, Roster roster){
-        
+
     }
 
     private void processPrintTuition(Enrollment enrollment, Roster roster){
