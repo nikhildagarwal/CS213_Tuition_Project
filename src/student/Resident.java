@@ -48,11 +48,20 @@ public class Resident extends Student {
         return true;
     }
 
+    /**
+     * gets the type of student
+     * @return returns "(Resident)" which when getType() is invoked
+     */
     @Override
     public String getType(){
         return "(Resident)";
     }
 
+    /**
+     * Calculates the student's tuition
+     * @param creditsEnrolled credits enrolled by the student
+     * @return returns tuition of the student
+     */
     @Override
     public double tuitionDue(int creditsEnrolled){
         double tuition = 0;
