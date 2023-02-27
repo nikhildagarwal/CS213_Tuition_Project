@@ -14,7 +14,7 @@ public class TuitionManager {
     public static final int CREDIT_ENROLLED_INDEX = 4;
     public static final int LENGTH_TO_ENROLL = 5;
     public static final int LENGTH_RESIDENT_INPUT = 6;
-    public static final int LENGTH_INTERNATIONAL_INPUT_WITH_ABROAD = 7;
+    public static final int CREDITS_ENROLLED_INDEX = 4;
     public static final int LENGTH_INTERNATIONAL_INPUT = 6;
     public static final int LENGTH_TRISTATE_INPUT = 7;
     public static final int LENGTH_TRISTATE_INPUT_NO_STATE = 6;
@@ -134,13 +134,24 @@ public class TuitionManager {
     private void processEnroll(String[] tokens, Enrollment enrollment, Roster roster){
         if(tokens.length<LENGTH_TO_ENROLL){
             System.out.println("Missing data in line command.");
+            return;
         }
+        int creditsEnrolled = 0;
         try{
-            Integer.parseInt(tokens[CREDIT_ENROLLED_INDEX]);
+            creditsEnrolled = Integer.parseInt(tokens[CREDIT_ENROLLED_INDEX]);
         }catch (Exception e){
             System.out.println("Credits enrolled is not an integer.");
             return;
         }
+        Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
+        EnrollStudent enrollStudent = new EnrollStudent(profile,creditsEnrolled);
+        Resident student = new Resident(profile,Major.CS,0,0);
+        if(!roster.contains(student)){
+            System.out.println("Cannot enroll: "+ profile +" is not in the roster.");
+            return;
+        }
+
+
     }
 
     private void processPrintEnrollment(Enrollment enrollment){

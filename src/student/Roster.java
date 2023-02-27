@@ -191,6 +191,15 @@ public class Roster {
         }
     }
 
+    public Student getStudent(Profile profile){
+        for(int i = 0;i<size;i++){
+            if(roster[i].getProfile().equals(profile)){
+                return roster[i];
+            }
+        }
+        return null;
+    }
+
     /**
      * Sorts roster by Major, school.
      * The comparable in this method, is the majors of the student objects.
