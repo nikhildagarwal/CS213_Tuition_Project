@@ -31,6 +31,9 @@ public abstract class Student implements Comparable<Student>{
      */
     private static final int SENIOR = 90;
 
+    public static final int MIN_CREDITS_ENROLLED = 3;
+    public static final int MAX_CREDITS_ENROLLED = 24;
+
     /**
      * Constructor to initialize the Student Object.
      * @param profile Profile Object of Student.
@@ -75,6 +78,13 @@ public abstract class Student implements Comparable<Student>{
     }
 
     public abstract boolean isResident();
+
+    public boolean isValid(int creditEnrolled){
+        if(creditEnrolled>=MIN_CREDITS_ENROLLED && creditEnrolled<=MAX_CREDITS_ENROLLED){
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Checks how many credits a student has completed and returns the standing of the student.
@@ -132,6 +142,8 @@ public abstract class Student implements Comparable<Student>{
     public boolean isValidStudent(){
         return profile.getDate().isValid() && profile.getDate().isValidAge() && creditCompleted >= 0 && major != null;
     }
+
+    public abstract String getType();
 
     /**
      * Helper method to format output of the Major portion of our student object.

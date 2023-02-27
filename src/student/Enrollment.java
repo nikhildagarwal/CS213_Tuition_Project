@@ -44,6 +44,15 @@ public class Enrollment {
         return false;
     }
 
+    public EnrollStudent getStudent(EnrollStudent enrollStudent){
+        for(int i = 0;i<size;i++){
+            if(enrollStudent.equals(enrollStudents[i])){
+                return enrollStudents[i];
+            }
+        }
+        return null;
+    }
+
     public void print(){
         for(int i =0;i<size;i++){
             System.out.println(enrollStudents[i]);

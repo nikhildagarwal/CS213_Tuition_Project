@@ -9,12 +9,16 @@ public class NonResident extends Student {
 
     @Override
     public String toString(){
-        return super.toString() + "(non-resident)";
+        return super.toString() + "(Non-Resident)";
     }
 
     @Override
     public boolean isResident(){
         return false;
+    }
+
+    public String getType(){
+        return "(Non-Resident)";
     }
 
     public static void main (String[] args){

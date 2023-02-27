@@ -206,7 +206,7 @@ Roy Brooks 9/9/1999 enrolled 18 credits
 John Doe 1/20/2003 enrolled 14 credits
 (International student) 9: invalid credit hours.
 Ava Lin 1/1/2001 enrolled 12 credits
-(International studentstudy abroad) 13: invalid credit hours.
+(International student study abroad) 13: invalid credit hours.
 Mia Diaz 6/30/2002 enrolled 9 credits
 April March 3/31/2000 enrolled 3 credits
 Bill Scanlan 5/1/1999 enrolled 21 credits
@@ -239,6 +239,8 @@ Sunny Patel 9/2/2005: credits enrolled: 20
 John Doe 11/2/2005 is not enrolled.
 John Doe 1/2/2007 dropped.
 John Doe 1/2/2007 enrolled 11 credits
+
+
 ** Tuition due **
 Carl Brown 10/7/2004 (Resident) enrolled 24 credits: tuition due: $19,036.00
 Sunny Patel 9/2/2005 (Tri-state NY) enrolled 20 credits: tuition due: $32,869.00

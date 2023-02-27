@@ -38,6 +38,9 @@ public class Resident extends Student {
         return true;
     }
 
+    public String getType(){
+        return "(Resident)";
+    }
 
 
     public static void main (String[] args){

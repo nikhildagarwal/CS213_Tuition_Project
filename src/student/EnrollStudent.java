@@ -18,7 +18,7 @@ public class EnrollStudent {
     @Override
     public boolean equals(Object obj){
         student.EnrollStudent enrollStudent = (student.EnrollStudent) obj;
-        if(profile.equals(enrollStudent.profile) && creditsEnrolled==enrollStudent.creditsEnrolled){
+        if(profile.equals(enrollStudent.profile)){
             return true;
         }
         return false;
