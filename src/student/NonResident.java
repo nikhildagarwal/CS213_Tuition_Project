@@ -1,6 +1,7 @@
+
 package student;
 
-public class NonResident extends Student{
+public class NonResident extends Student {
 
     public NonResident(Profile profile, Major major, int creditCompleted){
         super(profile,major,creditCompleted);

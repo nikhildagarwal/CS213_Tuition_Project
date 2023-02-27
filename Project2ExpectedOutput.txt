@@ -185,6 +185,8 @@ Ava Lin 1/1/2001 (14:332 EE SOE) credits completed: 109 (Senior)(non-resident)(i
 John Doe 12/20/2004 (14:332 EE SOE) credits completed: 45 (Sophomore)(non-resident)(tri-state:NY)
 John Doe 1/2/2007 (14:332 EE SOE) credits completed: 20 (Freshman)(resident)
 * end of roster *
+
+
 Enrollment is empty!
 Missing data in line command.
 Credits enrolled is not an integer.

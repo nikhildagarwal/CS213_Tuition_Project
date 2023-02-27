@@ -1,6 +1,5 @@
 package student;
 
-import javax.swing.plaf.nimbus.State;
 import java.util.Scanner;
 import java.io.File;
 
@@ -115,6 +114,9 @@ public class TuitionManager {
                         processAddInternational(tokens,roster); break;
                     case "AN":
                         processAddNonResident(tokens,roster); break;
+                    case "PE":
+                        //processPrintEnrollment(tokens,enrollment,roster);
+                        break;
                     default:
                         System.out.println(tokens[0] + " is an invalid command!");
                 }
@@ -123,6 +125,14 @@ public class TuitionManager {
             }
         }
     }
+
+    /*
+    private void processPrintEnrollment(String[] tokens, Enrollment enrollment, Roster roster){
+        if(enrollment.size()==EMPTY){
+            System.
+            return;
+        }
+    }*/
 
     /**
      * Used to remove a student from the roster

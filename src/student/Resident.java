@@ -1,7 +1,5 @@
 package student;
 
-import java.util.concurrent.locks.ReentrantLock;
-
 public class Resident extends Student {
     private int scholarship;
 

@@ -293,7 +293,7 @@ public class Roster {
      * @param roster array of students.
      * @param index index of the student that we want swap with the student one index to the right.
      */
-    private void swap(Student[] roster,int index){
+    private void swap(Student[] roster, int index){
         Student temp = roster[index];
         roster[index] = roster[index+1];
         roster[index+1] = temp;

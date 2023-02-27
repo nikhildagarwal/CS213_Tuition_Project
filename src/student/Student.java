@@ -37,7 +37,7 @@ public abstract class Student implements Comparable<Student>{
      * @param major Major of the student.
      * @param creditCompleted the number of credits that a student has completed.
      */
-    public Student(Profile profile,Major major, int creditCompleted){
+    public Student(Profile profile, Major major, int creditCompleted){
         this.profile = profile;
         this.major = major;
         this.creditCompleted = creditCompleted;
