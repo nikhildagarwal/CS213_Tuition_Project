@@ -1,5 +1,7 @@
 package student;
 
+import java.text.DecimalFormat;
+
 public class Enrollment {
 
     private EnrollStudent[] enrollStudents;
@@ -27,10 +29,8 @@ public class Enrollment {
         if(index == NOT_FOUND){
             return;
         }
-        for(int i = index + 1; i < size; i++) {
-            enrollStudents[index] = enrollStudents[i];
-            index++;
-        }
+        EnrollStudent moveStudent = enrollStudents[size-1];
+        enrollStudents[index] = moveStudent;
         size--;
         enrollStudents[size] = null;
     }
@@ -57,6 +57,25 @@ public class Enrollment {
         for(int i =0;i<size;i++){
             System.out.println(enrollStudents[i]);
         }
+    }
+
+    public void printTuition(Roster roster){
+        for(int i =0;i<size;i++){
+            Profile profile = enrollStudents[i].getProfile();
+            String type = roster.getStudent(profile).getType();
+            Student student = roster.getStudent(profile);
+            int creditsEnrolled = enrollStudents[i].getCreditsEnrolled();
+            System.out.println(profile+ " "+type+ " enrolled "+creditsEnrolled+" credits: tuition due: "+formatTuition(student.tuitionDue(creditsEnrolled)));
+        }
+    }
+
+    public String formatTuition(double tuition){
+        DecimalFormat df = new DecimalFormat("0.00");
+        String temp = "$"+df.format(tuition);
+        int length = temp.length();
+        String substringBack = temp.substring(length-6,length);
+        String substringFront = temp.substring(0,length-6);
+        return substringFront+","+substringBack;
     }
 
     private void grow(){

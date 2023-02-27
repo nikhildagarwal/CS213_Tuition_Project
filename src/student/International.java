@@ -6,6 +6,7 @@ public class International extends NonResident{
 
     public static final int MAX_STUDY_ABROAD_CREDITS = 12;
     public static final int MIN_INTERNATIONAL_CREDITS_ENROLLED = 12;
+    public static final double HEALTHCARE_FEE = 2650;
 
     public International(Profile profile,Major major, int creditCompleted){
         super(profile,major,creditCompleted);
@@ -23,6 +24,20 @@ public class International extends NonResident{
             return super.toString()+"(international)";
         }else{
             return super.toString()+"(international:study abroad)";
+        }
+    }
+
+    @Override
+    public double tuitionDue(int creditEnrolled){
+        if(isStudyAbroad){
+            return UNIVERSITY_FEE + HEALTHCARE_FEE;
+        }else{
+            double tuition = UNIVERSITY_FEE + HEALTHCARE_FEE + NONRESIDENT_TUITION;
+            if(creditEnrolled>EXTRA_FULL_TIME){
+                return tuition + (creditEnrolled - EXTRA_FULL_TIME) * NONRESIDENT_CREDIT_PRICE;
+            }else{
+                return tuition;
+            }
         }
     }
 

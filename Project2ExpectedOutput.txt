@@ -249,8 +249,8 @@ Kate Lindsey 7/15/2002 (Non-Resident) enrolled 6 credits: tuition due: $8,410.40
 Roy Brooks 9/9/1999 (Non-Resident) enrolled 18 credits: tuition due: $34,937.00
 John Doe 1/20/2003 (Non-Resident) enrolled 14 credits: tuition due: $33,005.00
 Ava Lin 1/1/2001 (International student) enrolled 12 credits: tuition due: $35,655.00
-Mia Diaz 6/30/2002 (International studentstudy abroad) enrolled 9 credits: tuition due: $5,918.00
-April March 3/31/2000 (International studentstudy abroad) enrolled 3 credits: tuition due: $5,918.00
+Mia Diaz 6/30/2002 (International student study abroad) enrolled 9 credits: tuition due: $5,918.00
+April March 3/31/2000 (International student study abroad) enrolled 3 credits: tuition due: $5,918.00
 Bill Scanlan 5/1/1999 (International student) enrolled 21 credits: tuition due: $40,485.00
 Roy Brooks 8/8/1999 (Tri-state CT) enrolled 16 credits: tuition due: $28,005.00
 Sophia Jones 12/31/2001 (Tri-state CT) enrolled 23 credits: tuition due: $34,767.00
@@ -259,6 +259,8 @@ Emma Miller 2/28/2003 (Tri-state NY) enrolled 8 credits: tuition due: $10,342.40
 Duke Ellington 2/29/2004 (Tri-state NY) enrolled 14 credits: tuition due: $29,005.00
 John Doe 1/2/2007 (Resident) enrolled 11 credits: tuition due: $7,058.40
 * end of tuition due *
+
+
 Missing data in line command.
 Roy Brooks 9/9/1999 (Non-Resident) is not eligible for the scholarship.
 Carl Brown 10/17/2004 is not in the roster.

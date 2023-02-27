@@ -24,6 +24,14 @@ public class EnrollStudent {
         return false;
     }
 
+    public Profile getProfile(){
+        return profile;
+    }
+
+    public int getCreditsEnrolled(){
+        return creditsEnrolled;
+    }
+
     public void changeCredits(int newCredits){
         creditsEnrolled = newCredits;
     }

@@ -65,7 +65,7 @@ public class Resident extends Student {
         }else{
             tuition += RESIDENT_TUITION+UNIVERSITY_FEE;
         }
-        return tuition;
+        return tuition-scholarship;
     }
 
 

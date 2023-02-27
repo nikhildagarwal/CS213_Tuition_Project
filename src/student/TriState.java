@@ -4,6 +4,12 @@ public class TriState extends NonResident{
 
     private String state;
 
+    public static final int FULL_TIME = 12;
+    public static final int EXTRA_FULL_TIME = 16;
+
+    public static final double NY_DISCOUNT = 4000;
+    public static final double CT_DISCOUNT = 5000;
+
     public TriState(Profile profile, Major major, int creditCompleted, String state){
         super(profile,major,creditCompleted);
         this.state = state;
@@ -12,6 +18,37 @@ public class TriState extends NonResident{
     @Override
     public String toString(){
         return super.toString()+"(tri-state:"+state+")";
+    }
+
+    @Override
+    public String getType(){
+        String type = "";
+        switch(state){
+            case "NY":
+                type = "(Tri-state NY)";
+                break;
+            case "CT":
+                type = "(Tri-state CT)";
+        }
+        return type;
+    }
+
+    @Override
+    public double tuitionDue(int creditEnrolled){
+        if(creditEnrolled<FULL_TIME){
+            return super.tuitionDue(creditEnrolled);
+        }else{
+            double temp = super.tuitionDue(creditEnrolled);
+            switch(state){
+                case "NY":
+                    temp -= NY_DISCOUNT;
+                    break;
+                case "CT":
+                    temp -= CT_DISCOUNT;
+
+            }
+            return temp;
+        }
     }
 
     public static void main (String[] args){

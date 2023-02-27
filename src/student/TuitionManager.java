@@ -14,7 +14,6 @@ public class TuitionManager {
     public static final int CREDIT_ENROLLED_INDEX = 4;
     public static final int LENGTH_TO_ENROLL = 5;
     public static final int LENGTH_RESIDENT_INPUT = 6;
-    public static final int CREDITS_ENROLLED_INDEX = 4;
     public static final int LENGTH_INTERNATIONAL_INPUT = 6;
     public static final int LENGTH_TRISTATE_INPUT = 7;
     public static final int LENGTH_TRISTATE_INPUT_NO_STATE = 6;
@@ -103,9 +102,6 @@ public class TuitionManager {
                         processPrintStanding(roster); break;
                     case "PC":
                         processPrintMajor(roster); break;
-                    case "L":
-                        //processSchoolList(tokens,roster);
-                        break;
                     case "C":
                         processChange(tokens,roster); break;
                     case "Q":
@@ -124,11 +120,25 @@ public class TuitionManager {
                         processEnroll(tokens,enrollment,roster); break;
                     case "D":
                         processDrop(tokens,enrollment); break;
+                    case "PT":
+                        processPrintTuition(enrollment, roster); break;
+                    case "S":
+                        processScholarship(tokens,roster);
                     default:
                         System.out.println(tokens[0] + " is an invalid command!");
                 }
             }catch (Exception e){}
         }
+    }
+
+    private void processScholarship(String[] tokens, Roster roster){
+        
+    }
+
+    private void processPrintTuition(Enrollment enrollment, Roster roster){
+        System.out.println("** Tuition due **");
+        enrollment.printTuition(roster);
+        System.out.println("* end of tuition due *");
     }
 
     private void processDrop(String[] tokens, Enrollment enrollment){
