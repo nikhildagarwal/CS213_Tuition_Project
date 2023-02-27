@@ -1,8 +1,8 @@
 package student;
 
 /**
- * Implementing subclass Resident that extends Student
- * Contains overrided methods
+ * Implementation of the subclass Resident that extends superclass Student
+ * Contains overrided methods toString, getType, isResident, tuitionDue
  * @author Nikhil Agarwal, Hyeon Oh
  */
 public class Resident extends Student {
