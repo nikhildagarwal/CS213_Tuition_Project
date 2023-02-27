@@ -4,6 +4,7 @@ package student;
  * Class to implement Enrollment object
  * Holds an array of EnrollStudent data type, size of the array
  * Contains methods to add, remove, print, getStudent , and check if a student is contained in the array
+ * @author Nikhil Agarwal, Hyeon Oh
  */
 public class Enrollment {
 

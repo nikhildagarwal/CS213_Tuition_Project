@@ -5,6 +5,7 @@ package student;
  * Holds profile and creditsEnrolled as parameters
  * Contains methods to fetch information about enrolled students' credits and change credits
  * Contains overrided methods toString, equals
+ * @author Nikhil Agarwal, Hyeon Oh
  */
 public class EnrollStudent {
 
