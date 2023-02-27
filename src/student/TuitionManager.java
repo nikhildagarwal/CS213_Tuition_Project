@@ -306,12 +306,14 @@ public class TuitionManager {
         if(studentChecker(tokens)){
             Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
             Resident resident = new Resident(profile,grabMajorString(tokens[MAJOR_INDEX]),Integer.parseInt(tokens[CREDITS_INDEX]),STARTING_SCHOLARSHIP);
-            if(resident.isValidStudent()){
-                if(roster.contains(resident)){
-                    System.out.println(resident.getProfile()+" is already in the roster.");
-                }else{
-                    roster.add(resident);
-                    System.out.println(resident.getProfile()+" added to the roster.");
+            if(resident.isResident()){
+                if(resident.isValidStudent()){
+                    if(roster.contains(resident)){
+                        System.out.println(resident.getProfile()+" is already in the roster.");
+                    }else{
+                        roster.add(resident);
+                        System.out.println(resident.getProfile()+" added to the roster.");
+                    }
                 }
             }
         }

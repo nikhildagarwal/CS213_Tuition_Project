@@ -79,6 +79,11 @@ public abstract class Student implements Comparable<Student>{
 
     public abstract boolean isResident();
 
+    public abstract double tuitionDue(int creditsEnrolled);
+
+    public abstract String getType();
+
+
     public boolean isValid(int creditEnrolled){
         if(creditEnrolled>=MIN_CREDITS_ENROLLED && creditEnrolled<=MAX_CREDITS_ENROLLED){
             return true;
@@ -142,8 +147,6 @@ public abstract class Student implements Comparable<Student>{
     public boolean isValidStudent(){
         return profile.getDate().isValid() && profile.getDate().isValidAge() && creditCompleted >= 0 && major != null;
     }
-
-    public abstract String getType();
 
     /**
      * Helper method to format output of the Major portion of our student object.
