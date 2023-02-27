@@ -27,6 +27,8 @@ public class International extends NonResident{
         Date d = new Date();
         Profile p = new Profile("Funcheon","Hope",d);
         International i = new International(p,Major.MATH,101,true);
+        Resident r = new Resident(p,Major.CS,20,100);
+        System.out.println(i.equals(r));
         System.out.println(i);
     }
 }

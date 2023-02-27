@@ -92,7 +92,7 @@ public class TuitionManager {
                     case "LS":
                         processLS(roster); break;
                     case "R":
-                        //processRemove(tokens,roster);
+                        processRemove(tokens,roster);
                         break;
                     case "P":
                         processPrint(roster,FULL_ROSTER,ALL_SCHOOLS); break;
@@ -104,8 +104,7 @@ public class TuitionManager {
                         //processSchoolList(tokens,roster);
                         break;
                     case "C":
-                        //processChange(tokens,roster);
-                        break;
+                        processChange(tokens,roster); break;
                     case "Q":
                         System.out.println("Roster Manager terminated."); return;
                     case "AR":
@@ -125,6 +124,21 @@ public class TuitionManager {
         }
     }
 
+    /**
+     * Used to remove a student from the roster
+     * @param tokens input taken from the user at the command line
+     * @param roster roster object that the student object will be removed from.
+     */
+    private void processRemove(String[] tokens,Roster roster){
+        Resident studentToRemove = new Resident(new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX])),Major.CS,0,0);
+        boolean removed = roster.remove(studentToRemove);
+        if(removed){
+            System.out.println(studentToRemove.getProfile() + " removed from the roster.");
+            return;
+        }
+        System.out.println(studentToRemove.getProfile() + " is not in the roster.");
+    }
+
     private void processAddNonResident(String[] tokens, Roster roster){
         if(tokens.length<LENGTH_RESIDENT_INPUT){
             System.out.println("Missing data in line command.");
@@ -141,6 +155,26 @@ public class TuitionManager {
                     System.out.println(nonResident.getProfile()+" added to the roster.");
                 }
             }
+        }
+    }
+
+    /**
+     * Changes a student's major if the student is found the roster and the major they want to change too is valid.
+     * @param tokens string array that is taken from the command line from the user
+     * @param roster the roster object that will be searched to find a specific student.
+     */
+    private void processChange(String[] tokens, Roster roster){
+        Major major = grabMajor(tokens);
+        if(major==null){
+            return;
+        }
+        Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
+        Resident changedStudent = new Resident(profile,major,ANY_NUMBER_OF_CREDITS,0);
+        boolean changed = roster.change(changedStudent,major);
+        if(changed){
+            System.out.println(profile + " major changed to " + major);
+        }else{
+            System.out.println(profile + " is not in the roster.");
         }
     }
 

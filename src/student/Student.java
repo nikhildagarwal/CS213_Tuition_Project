@@ -74,8 +74,6 @@ public abstract class Student implements Comparable<Student>{
         return profile.compareTo(student.getProfile());
     }
 
-
-
     public abstract boolean isResident();
 
     /**
