@@ -9,6 +9,10 @@ import java.io.File;
  * @author Nikhil Agarwal, Hyeon Oh
  */
 public class TuitionManager {
+
+    public static final int EMPTY = 0;
+    public static final int CREDIT_ENROLLED_INDEX = 4;
+    public static final int LENGTH_TO_ENROLL = 5;
     public static final int LENGTH_RESIDENT_INPUT = 6;
     public static final int LENGTH_INTERNATIONAL_INPUT_WITH_ABROAD = 7;
     public static final int LENGTH_INTERNATIONAL_INPUT = 6;
@@ -115,8 +119,9 @@ public class TuitionManager {
                     case "AN":
                         processAddNonResident(tokens,roster); break;
                     case "PE":
-                        //processPrintEnrollment(tokens,enrollment,roster);
-                        break;
+                        processPrintEnrollment(enrollment); break;
+                    case "E":
+                        processEnroll(tokens,enrollment,roster); break;
                     default:
                         System.out.println(tokens[0] + " is an invalid command!");
                 }
@@ -126,13 +131,27 @@ public class TuitionManager {
         }
     }
 
-    /*
-    private void processPrintEnrollment(String[] tokens, Enrollment enrollment, Roster roster){
-        if(enrollment.size()==EMPTY){
-            System.
+    private void processEnroll(String[] tokens, Enrollment enrollment, Roster roster){
+        if(tokens.length<LENGTH_TO_ENROLL){
+            System.out.println("Missing data in line command.");
+        }
+        try{
+            Integer.parseInt(tokens[CREDIT_ENROLLED_INDEX]);
+        }catch (Exception e){
+            System.out.println("Credits enrolled is not an integer.");
             return;
         }
-    }*/
+    }
+
+    private void processPrintEnrollment(Enrollment enrollment){
+        if(enrollment.size()==EMPTY){
+            System.out.println("Enrollment is empty!");
+            return;
+        }
+        System.out.println("** Enrollment **");
+        enrollment.print();
+        System.out.println("* end of enrollment *");
+    }
 
     /**
      * Used to remove a student from the roster

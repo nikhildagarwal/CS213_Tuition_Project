@@ -234,6 +234,8 @@ Emma Miller 2/28/2003: credits enrolled: 8
 Duke Ellington 2/29/2004: credits enrolled: 14
 Sunny Patel 9/2/2005: credits enrolled: 20
 * end of enrollment *
+
+
 John Doe 11/2/2005 is not enrolled.
 John Doe 1/2/2007 dropped.
 John Doe 1/2/2007 enrolled 11 credits
