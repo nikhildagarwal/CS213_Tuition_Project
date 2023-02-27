@@ -17,7 +17,7 @@ public class NonResident extends Student {
 
     @Override
     public String toString(){
-        return super.toString() + "(Non-Resident)";
+        return super.toString() + "(non-resident)";
     }
 
     @Override
