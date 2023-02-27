@@ -79,8 +79,14 @@ public class Roster {
         if(size == roster.length){
             grow();
         }
+        //if student is already in the roster, return false so you can't add him/her again
+        if(find(student) != NOT_FOUND)
+        {
+            return false;
+        }
         roster[size] = student;
         size++;
+
         return true;
     }
 
