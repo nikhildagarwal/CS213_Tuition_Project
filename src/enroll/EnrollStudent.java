@@ -1,3 +1,6 @@
+/**
+ * package for enroll object
+ */
 package enroll;
 
 import student.Profile;

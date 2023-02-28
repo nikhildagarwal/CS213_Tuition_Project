@@ -1,3 +1,7 @@
+/**
+ * test classes
+ * JUnit tests
+ */
 package test;
 
 import org.junit.Test;

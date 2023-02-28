@@ -1,3 +1,6 @@
+/**
+ * structure package, contains Data Structure objects
+ */
 package structure;
 
 

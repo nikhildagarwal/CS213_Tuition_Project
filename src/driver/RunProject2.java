@@ -1,3 +1,6 @@
+/**
+ * holds driver class to run project
+ */
 package driver;
 
 import process.TuitionManager;

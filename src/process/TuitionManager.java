@@ -1,3 +1,6 @@
+/**
+ * package to hold manager class (all command line inputs are processed here)
+ */
 package process;
 
 import enroll.EnrollStudent;

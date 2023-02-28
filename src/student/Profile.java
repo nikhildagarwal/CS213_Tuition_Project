@@ -1,5 +1,7 @@
+/**
+ * Contains all classes for student object and extended student objects
+ */
 package student;
-
 /**
  * Class to implement Profile Object.
  * Holds LastName, FirstName, and DoB as parameters.

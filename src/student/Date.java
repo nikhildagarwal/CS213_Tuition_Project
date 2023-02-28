@@ -1,3 +1,6 @@
+/**
+ * Contains all classes for student object and extended student objects
+ */
 package student;
 import java.util.Calendar;
 import java.util.StringTokenizer;
