@@ -104,13 +104,4 @@ public class Profile implements Comparable<Profile>{
             return compareLastName;
         }
     }
-
-    public static void main(String[] args){
-        Date myDOB = new Date("4/22/2002");
-        Profile myProfile = new Profile("Agarwal","Nikhil",myDOB);
-        System.out.println(myProfile);
-        System.out.println(myProfile.getDate());
-        System.out.println(myProfile.getFirstName());
-        System.out.println(myProfile.getLastName());
-    }
 }

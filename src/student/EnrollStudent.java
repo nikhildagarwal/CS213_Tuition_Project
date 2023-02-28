@@ -4,12 +4,19 @@ package student;
  * Class to implement EnrollStudent object
  * Holds profile and creditsEnrolled as parameters
  * Contains methods to fetch information about enrolled students' credits and change credits
- * Contains overrided methods toString, equals
+ * Contains override methods toString, equals
  * @author Nikhil Agarwal, Hyeon Oh
  */
 public class EnrollStudent {
 
+    /**
+     * Profile Object
+     */
     private Profile profile;
+
+    /**
+     * credits that the student wants to take in the current semester.
+     */
     private int creditsEnrolled;
 
     /**
@@ -45,27 +52,27 @@ public class EnrollStudent {
         return false;
     }
 
-
+    /**
+     * Getter method to return Profile data of EnrollStudent object.
+     * @return Profile Object
+     */
     public Profile getProfile(){
         return profile;
     }
 
+    /**
+     * Getter method to return creditEnrolled data of EnrollStudent object.
+     * @return integer creditEnrolled
+     */
     public int getCreditsEnrolled(){
         return creditsEnrolled;
     }
 
     /**
-     * Changes the student's credits
+     * Changes the EnrollStudent object creditsEnrolled to the desired value.
      * @param newCredits which are the credits to be changed
      */
-
     public void changeCredits(int newCredits){
         creditsEnrolled = newCredits;
-    }
-
-    public static void main (String[] args){
-        Date date = new Date();
-        Profile profile = new Profile("Agarwal","Nikhil",date);
-        student.EnrollStudent s = new student.EnrollStudent(profile,14);
     }
 }

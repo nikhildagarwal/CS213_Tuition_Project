@@ -102,11 +102,4 @@ public enum Major {
         codeTokens.nextToken();
         return Integer.parseInt(codeTokens.nextToken());
     }
-
-    public static void main(String[] args){
-        System.out.println(Major.CS);
-        System.out.println(Major.CS.getDepartmentCode(Major.CS.getMajorCode()));
-        System.out.println(Major.CS.getMajorCode());
-        System.out.println(Major.CS.getSchool());
-    }
 }

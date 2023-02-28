@@ -39,7 +39,14 @@ public abstract class Student implements Comparable<Student>{
      */
     private static final int SENIOR = 90;
 
+    /**
+     * Min credits to be enrolled
+     */
     public static final int MIN_CREDITS_ENROLLED = 3;
+
+    /**
+     * Max credits students can take in a semester
+     */
     public static final int MAX_CREDITS_ENROLLED = 24;
 
     /**
@@ -85,13 +92,35 @@ public abstract class Student implements Comparable<Student>{
         return profile.compareTo(student.getProfile());
     }
 
+    /**
+     * Abstract method to check if student is a resident
+     * Must be implemented in extender class (Override)
+     * @return
+     */
     public abstract boolean isResident();
 
+    /**
+     * Abstract method to get the double value that each student owes.
+     * Values will vary depending on the SubClass of student.
+     * Must override in subclasses.
+     * @param creditsEnrolled number of credits the student is taking this semester.
+     * @return the amount of money the student owes.
+     */
     public abstract double tuitionDue(int creditsEnrolled);
 
+    /**
+     * Abstract method to get the type of Student
+     * Basically check to see which subclass of student a student object is.
+     * Must override.
+     * @return
+     */
     public abstract String getType();
 
-
+    /**
+     * Checks to see if Student is valid to be enrolled this semester.
+     * @param creditEnrolled The number of credits student is wants to take this semester
+     * @return true if 3<=credits<=24, false otherwise.
+     */
     public boolean isValid(int creditEnrolled){
         if(creditEnrolled>=MIN_CREDITS_ENROLLED && creditEnrolled<=MAX_CREDITS_ENROLLED){
             return true;
@@ -99,6 +128,10 @@ public abstract class Student implements Comparable<Student>{
         return false;
     }
 
+    /**
+     * Change the credits completed data in student object to given value.
+     * @param newCreditsCompleted value we want to change to.
+     */
     public void changeCreditCompleted(int newCreditsCompleted){
         creditCompleted = newCreditsCompleted;
     }
@@ -168,8 +201,4 @@ public abstract class Student implements Comparable<Student>{
     private String getCode_School(Major major){
         return "(" + major.getMajorCode() + " " + major + " " + major.getSchool() + ")";
     }
-
-
-
-
 }

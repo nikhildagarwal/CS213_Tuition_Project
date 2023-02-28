@@ -4,6 +4,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Checks add() method and remove() in Roster.class
+ * @author Hyeon Oh, Nikhil Agarwal
+ */
 public class RosterTest {
 
     @Test

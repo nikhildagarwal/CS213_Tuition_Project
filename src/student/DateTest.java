@@ -4,6 +4,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Checks isValid() method in Date.class
+ * @author Hyeon Oh, Nikhil Agarwal
+ */
 public class DateTest {
 
     @Test

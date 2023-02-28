@@ -264,11 +264,4 @@ public class Date implements Comparable<Date>{
         }
         return false;
     }
-
-    public static void main(String[] args){
-        Date data = new Date("04/31/2002");
-        System.out.println(data);
-        System.out.println("Valid date: "+data.isValid());
-        System.out.println("Valid age: " +data.isValidAge());
-    }
 }

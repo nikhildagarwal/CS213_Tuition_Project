@@ -8,14 +8,26 @@ package student;
  */
 public class TriState extends NonResident{
 
+    /**
+     * String state (Ex: NY)
+     * data to add to Non-Resident object.
+     */
     private String state;
 
-
+    /**
+     * Min credits to be considered full time student.
+     */
     public static final int FULL_TIME = 12;
 
+    /**
+     * Discount for full-time NY students
+     */
     public static final double NY_DISCOUNT = 4000;
-    public static final double CT_DISCOUNT = 5000;
 
+    /**
+     * Discount for full-time CT students
+     */
+    public static final double CT_DISCOUNT = 5000;
 
     /**
      * Constructor for the TriState subclass object
@@ -24,7 +36,6 @@ public class TriState extends NonResident{
      * @param creditCompleted creditCompleted of the student
      * @param state state of the student
      */
-
     public TriState(Profile profile, Major major, int creditCompleted, String state){
         super(profile,major,creditCompleted);
         this.state = state;
@@ -39,6 +50,11 @@ public class TriState extends NonResident{
         return super.toString()+"(tri-state:"+state+")";
     }
 
+    /**
+     * Overrides getType method in Student class.
+     * Implements getType abstract method.
+     * @return Type of student for Tri state student as String.
+     */
     @Override
     public String getType(){
         String type = "";
@@ -52,6 +68,11 @@ public class TriState extends NonResident{
         return type;
     }
 
+    /**
+     * Calculates the Tuition Due for Tri-State student depending on State
+     * @param creditEnrolled of the NonResident student
+     * @return  double Tuition Due for Tri-State
+     */
     @Override
     public double tuitionDue(int creditEnrolled){
         if(creditEnrolled<FULL_TIME){
@@ -68,12 +89,5 @@ public class TriState extends NonResident{
             }
             return temp;
         }
-    }
-
-    public static void main (String[] args){
-        Date d = new Date();
-        Profile p = new Profile("Funcheon","Hope",d);
-        TriState res = new TriState(p,Major.CS,132,"NJ");
-        System.out.println(res);
     }
 }

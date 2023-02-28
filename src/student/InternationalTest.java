@@ -4,6 +4,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Checks tuitionDue() method in Internation Class which extends the student class.
+ * @author Hyeon Oh, Nikhil Agarwal
+ */
 public class InternationalTest {
 
     @Test

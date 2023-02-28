@@ -2,18 +2,39 @@ package student;
 
 /**
  * Implementation of the subclass Resident that extends superclass Student
- * Contains overrided methods toString, getType, isResident, tuitionDue
+ * Contains override methods toString, getType, isResident, tuitionDue
  * @author Nikhil Agarwal, Hyeon Oh
  */
 public class Resident extends Student {
 
+    /**
+     * Min credits needed to be full time student
+     */
     public static final int FULL_TIME = 12;
+
+    /**
+     * Min credits to not be charged extra
+     */
     public static final int EXTRA_FULL_TIME = 16;
 
+    /**
+     * Price per credit hour for Residents
+     */
     public static final double RESIDENT_CREDIT_PRICE = 404;
 
+    /**
+     * University fee for students
+     */
     public static final double UNIVERSITY_FEE = 3268;
+
+    /**
+     * Part-time University fee
+     */
     public static final double PART_TIME_UNIVERSITY_FEE = UNIVERSITY_FEE*0.8;
+
+    /**
+     * Resident flat tuition fee
+     */
     public static final double RESIDENT_TUITION = 12536;
 
     private int scholarship;
@@ -77,16 +98,12 @@ public class Resident extends Student {
         return tuition-scholarship;
     }
 
+    /**
+     * Sets the scholarship data of Resident object to a new specified value.
+     * @param newScholarship value of new scholarship.
+     */
     public void setScholarship(int newScholarship){
         scholarship = newScholarship;
-    }
-
-
-    public static void main (String[] args){
-        Date d = new Date();
-        Profile p = new Profile("Funcheon","Hope",d);
-        Resident res = new Resident(p,Major.CS,132,0);
-        System.out.println(res);
     }
 
 }

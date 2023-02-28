@@ -13,11 +13,29 @@ import java.text.DecimalFormat;
 
 public class Enrollment {
 
+    /**
+     * Data structure (array) to hold EnrollStudent Objects
+     */
     private EnrollStudent[] enrollStudents;
+
+    /**
+     * Keeps track of number of elements in our array
+     */
     private int size;
 
+    /**
+     * Initial size of array
+     */
     public static final int INITIAL_SIZE = 4;
+
+    /**
+     * -1 to indicated element not found in search
+     */
     public static final int NOT_FOUND = -1;
+
+    /**
+     * Array starts with no elements
+     */
     public static final int INITIAL_NUMBER_OF_ELEMENTS = 0;
 
     /**
@@ -69,6 +87,11 @@ public class Enrollment {
         return false;
     }
 
+    /**
+     * Searches through EnrollStudents array and returns the object if found.
+     * @param profile matching profile of EnrollStudent
+     * @return EnrollStudent that has the same profile as given
+     */
     public EnrollStudent getEnrollStudentFromProfile(Profile profile){
         for(int i = 0;i<size;i++){
             if(enrollStudents[i].getProfile().equals(profile)){
@@ -101,7 +124,10 @@ public class Enrollment {
         }
     }
 
-
+    /**
+     * Prints the EnrollStudent Array and each student corresponding tuition due.
+     * @param roster Roster object to search and get student data.
+     */
     public void printTuition(Roster roster){
         for(int i =0;i<size;i++){
             Profile profile = enrollStudents[i].getProfile();
@@ -112,6 +138,11 @@ public class Enrollment {
         }
     }
 
+    /**
+     * Change double to money format (EX: 23423.4 -> $23,423.40)
+     * @param tuition The tuition value of a student (double)
+     * @return String formatted as United States Money.
+     */
     public String formatTuition(double tuition){
         DecimalFormat df = new DecimalFormat("0.00");
         String temp = "$"+df.format(tuition);
@@ -123,9 +154,8 @@ public class Enrollment {
 
 
     /**
-     * Increases the size of the EnrollStudent array when need be
+     * Increases the size of the EnrollStudent array when the number of elements in the array equals the length of the array
      */
-
     private void grow(){
         int prevLength = enrollStudents.length;
         EnrollStudent[] newEnrollment = new EnrollStudent[prevLength+INITIAL_SIZE];
@@ -156,30 +186,5 @@ public class Enrollment {
         }
         return NOT_FOUND;
     }
-
-    public static void main(String[] args){
-        EnrollStudent e1 = new EnrollStudent(new Profile("Agarwal","Nikhil",new Date("4/22/2002")),15);
-        EnrollStudent e2 = new EnrollStudent(new Profile("Funcheon","Hope",new Date("10/8/2001")),20);
-        EnrollStudent e3 = new EnrollStudent(new Profile("Agarwal","Navin",new Date("5/20/2007")),13);
-        EnrollStudent e4 = new EnrollStudent(new Profile("Agarwal","Alok",new Date("10/1/1973")),12);
-        EnrollStudent e5 = new EnrollStudent(new Profile("Kim","Sangsoon",new Date("1/27/1969")),15);
-        EnrollStudent e6 = new EnrollStudent(new Profile("Rooprai","Aman",new Date("4/19/2002")),15);
-
-        Enrollment enrollment = new Enrollment();
-        enrollment.add(e1);
-        enrollment.add(e2);
-        enrollment.add(e3);
-        enrollment.add(e4);
-        enrollment.add(e5);
-        enrollment.add(e6);
-        System.out.println("Size: "+enrollment.size());
-        enrollment.print();
-        enrollment.remove(e3);
-        System.out.println("Size: "+enrollment.size());
-        enrollment.print();
-
-
-    }
-
 }
 

@@ -3,7 +3,7 @@ package student;
 /**
  * Class to implement International subclass which extends to its parent class NonResident
  * Contains instance variable isStudyAbroad which will be used in tuition calculation purposes
- * Contains overrided methods such as toString, isValid, and getType
+ * Contains override methods such as toString, isValid, and getType
  * @author Nikhil Agarwal, Hyeon Oh
  */
 public class International extends NonResident{
@@ -69,6 +69,11 @@ public class International extends NonResident{
         }
     }
 
+    /**
+     * Method to overide getType method in Student.class
+     * Checks to see if student is Abroad or not.
+     * @return Type of Student: International as string.
+     */
     @Override
     public String getType(){
         if(isStudyAbroad){
@@ -79,7 +84,7 @@ public class International extends NonResident{
 
     /**
      * method which checks whether the student's credit fall within the range of an international student that is abroad
-     * @param creditsEnrolled creditsEnrolle of the student
+     * @param creditsEnrolled creditsEnroll of the student
      * @return true if the number of creditsEnrolled are valid, false otherwise
      */
     @Override
@@ -97,14 +102,5 @@ public class International extends NonResident{
                 return false;
             }
         }
-    }
-
-    public static void main(String[] args){
-        Date d = new Date();
-        Profile p = new Profile("Funcheon","Hope",d);
-        International i = new International(p,Major.MATH,101,true);
-        Resident r = new Resident(p,Major.CS,20,100);
-        System.out.println(i.equals(r));
-        System.out.println(i);
     }
 }

@@ -84,7 +84,6 @@ public class Roster {
         if(size == roster.length){
             grow();
         }
-        //if student is already in the roster, return false so you can't add him/her again
         if(find(student) != NOT_FOUND)
         {
             return false;
@@ -196,6 +195,13 @@ public class Roster {
         }
     }
 
+    /**
+     * Updates the creditCompleted data in Student object by taking the
+     * creditsEnrolled value and adding it to creditsCompleted.
+     * @param enrollment list of enrolled students that have finished the semester.
+     *                   We use this list to get the number of credits each student
+     *                   has completed this semester.
+     */
     public void updateCreditsCompleted(Enrollment enrollment){
         for(int i = 0;i<size;i++){
             Student student = roster[i];
@@ -209,6 +215,9 @@ public class Roster {
         }
     }
 
+    /**
+     * Print Roster of students that have enough credits to graduate.
+     */
     public void printGraduated(){
         for(int i = 0;i<size;i++){
             if(roster[i].getcreditCompleted() >= GRADUATE_CREDITS){
@@ -217,6 +226,11 @@ public class Roster {
         }
     }
 
+    /**
+     * Getter method to get student from roster using only profile matching.
+     * @param profile profile of the student that we want to find.
+     * @return Student that matches the given profile, or null if not found.
+     */
     public Student getStudent(Profile profile){
         for(int i = 0;i<size;i++){
             if(roster[i].getProfile().equals(profile)){

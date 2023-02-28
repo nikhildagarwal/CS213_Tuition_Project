@@ -3,18 +3,40 @@ package student;
 
 /**
  * Implementation of subclass NonResident that extends to Student superclass
- * Contains overrided methods such as toString
+ * Contains override methods such as toString
  * Contains methods to calculate tuition, type of nonresident student, checking to see whether or not student is a resident
  * @author Nikhil Agarwal, Hyeon Oh
  */
 public class NonResident extends Student {
+
+    /**
+     * Min credits need to be full time student
+     */
     public static final int FULL_TIME = 12;
+
+    /**
+     * Any credit hours over this value and tution will increase
+     */
     public static final int EXTRA_FULL_TIME = 16;
 
+    /**
+     * Price of each credit hour for Non-Residents
+     */
     public static final double NONRESIDENT_CREDIT_PRICE = 966;
 
+    /**
+     * University Fee for students
+     */
     public static final double UNIVERSITY_FEE = 3268;
+
+    /**
+     * University Fee for part-time students
+     */
     public static final double PART_TIME_UNIVERSITY_FEE = UNIVERSITY_FEE * 0.8;
+
+    /**
+     * Non-Resident flat tuition fee
+     */
     public static final double NONRESIDENT_TUITION = 29737;
 
     /**
@@ -72,12 +94,5 @@ public class NonResident extends Student {
             tuition += NONRESIDENT_TUITION+UNIVERSITY_FEE;
         }
         return tuition;
-    }
-
-    public static void main (String[] args){
-        Date d = new Date();
-        Profile p = new Profile("Funcheon","Hope",d);
-        NonResident res = new NonResident(p,Major.CS,132);
-        System.out.println(res);
     }
 }
