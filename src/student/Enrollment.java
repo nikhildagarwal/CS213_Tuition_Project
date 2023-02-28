@@ -74,7 +74,7 @@ public class Enrollment {
      * @param enrollStudent which is the student to be fetched
      * @return returns the student and null if the student is not found
      */
-    public EnrollStudent getStudent(EnrollStudent enrollStudent){
+    public EnrollStudent getEnrollStudent(EnrollStudent enrollStudent){
         for(int i = 0;i<size;i++){
             if(enrollStudent.equals(enrollStudents[i])){
                 return enrollStudents[i];
