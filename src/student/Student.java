@@ -99,6 +99,10 @@ public abstract class Student implements Comparable<Student>{
         return false;
     }
 
+    public void changeCreditCompleted(int newCreditsCompleted){
+        creditCompleted = newCreditsCompleted;
+    }
+
     /**
      * Checks how many credits a student has completed and returns the standing of the student.
      * @param creditCompleted number of credits student has completed.

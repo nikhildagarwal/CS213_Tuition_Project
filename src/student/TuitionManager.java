@@ -93,48 +93,37 @@ public class TuitionManager {
             String[] tokens = processLine(scanner.nextLine());
             try{
                 switch(tokens[CODE_INDEX]){
-                    case "LS":
-                        processLS(roster); break;
-                    case "R":
-                        processRemove(tokens,roster);
-                        break;
-                    case "P":
-                        processPrint(roster,FULL_ROSTER,ALL_SCHOOLS); break;
-                    case "PS":
-                        processPrintStanding(roster); break;
-                    case "PC":
-                        processPrintMajor(roster); break;
-                    case "C":
-                        processChange(tokens,roster); break;
-                    case "Q":
-                        System.out.println("Roster Manager terminated."); return;
-                    case "AR":
-                        processAddResident(tokens,roster); break;
-                    case "AT":
-                        processAddTriState(tokens,roster); break;
-                    case "AI":
-                        processAddInternational(tokens,roster); break;
-                    case "AN":
-                        processAddNonResident(tokens,roster); break;
-                    case "PE":
-                        processPrintEnrollment(enrollment); break;
-                    case "E":
-                        processEnroll(tokens,enrollment,roster); break;
-                    case "D":
-                        processDrop(tokens,enrollment); break;
-                    case "PT":
-                        processPrintTuition(enrollment, roster); break;
-                    case "S":
-                        processScholarship(tokens,roster,enrollment); break;
-                    default:
-                        System.out.println(tokens[0] + " is an invalid command!");
+                    case "LS": processLS(roster); break;
+                    case "R": processRemove(tokens,roster); break;
+                    case "P": processPrint(roster,FULL_ROSTER,ALL_SCHOOLS); break;
+                    case "PS": processPrintStanding(roster); break;
+                    case "PC": processPrintMajor(roster); break;
+                    case "C": processChange(tokens,roster); break;
+                    case "Q": System.out.println("Tuition Manager terminated."); return;
+                    case "AR": processAddResident(tokens,roster); break;
+                    case "AT": processAddTriState(tokens,roster); break;
+                    case "AI": processAddInternational(tokens,roster); break;
+                    case "AN": processAddNonResident(tokens,roster); break;
+                    case "PE": processPrintEnrollment(enrollment); break;
+                    case "E": processEnroll(tokens,enrollment,roster); break;
+                    case "D": processDrop(tokens,enrollment); break;
+                    case "PT": processPrintTuition(enrollment, roster); break;
+                    case "S": processScholarship(tokens,roster,enrollment); break;
+                    case "SE": processSemesterEnd(roster,enrollment); break;
+                    default: System.out.println(tokens[0] + " is an invalid command!");
                 }
             }catch (Exception e){}
         }
     }
 
-    private void processScholarship(String[] tokens, Roster roster, Enrollment enrollment){
+    private void processSemesterEnd(Roster roster, Enrollment enrollment){
+        roster.updateCreditsCompleted(enrollment);
+        System.out.println("Credit completed has been updated.");
+        System.out.println("** list of students eligible for graduation **");
+        roster.printGraduated();
+    }
 
+    private void processScholarship(String[] tokens, Roster roster, Enrollment enrollment){
         if(tokens.length<LENGTH_SCHOLARSHIP_INPUT){
             System.out.println("Missing data in line command.");
             return;
@@ -162,7 +151,7 @@ public class TuitionManager {
                 return;
             }
             if(enrollStudent.getCreditsEnrolled()<12){
-                System.out.println(profile+" part time student is not eligible for the scholarship");
+                System.out.println(profile+" part time student is not eligible for the scholarship.");
                 return;
             }
             Resident ourStudent = (Resident) temp;

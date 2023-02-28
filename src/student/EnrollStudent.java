@@ -54,7 +54,6 @@ public class EnrollStudent {
         return creditsEnrolled;
     }
 
-
     /**
      * Changes the student's credits
      * @param newCredits which are the credits to be changed

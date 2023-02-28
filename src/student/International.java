@@ -31,7 +31,7 @@ public class International extends NonResident{
      * @param profile profile of the international student
      * @param major major of the international student
      * @param creditCompleted creditCompleted of the international student
-     * @param isStudyAbroad value of whether or not the student is studying abroad
+     * @param isStudyAbroad value of whether the student is studying abroad
      */
     public International(Profile profile, Major major, int creditCompleted, boolean isStudyAbroad){
         super(profile,major,creditCompleted);
@@ -40,7 +40,7 @@ public class International extends NonResident{
 
     /**
      * Overrides the toString method
-     * @return invokes the parent class toString and shows whether or not the student is studying abroad
+     * @return invokes the parent class toString and shows whether the student is studying abroad
      */
     @Override
     public String toString(){
@@ -72,13 +72,13 @@ public class International extends NonResident{
     @Override
     public String getType(){
         if(isStudyAbroad){
-            return "(International student study abroad)";
+            return "(International studentstudy abroad)";
         }
         return "(International student)";
     }
 
     /**
-     * method which checks whether or not the student's credit fall within the range of an international student that is abroad
+     * method which checks whether the student's credit fall within the range of an international student that is abroad
      * @param creditsEnrolled creditsEnrolle of the student
      * @return true if the number of creditsEnrolled are valid, false otherwise
      */

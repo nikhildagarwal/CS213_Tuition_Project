@@ -25,6 +25,11 @@ public class Roster {
     public static final int NOT_FOUND = -1;
 
     /**
+     * credits needed to graduate
+     */
+    public static final int GRADUATE_CREDITS = 120;
+
+    /**
      * initial size of our data structure
      */
     public static final int INITIAL_SIZE = 4;
@@ -188,6 +193,27 @@ public class Roster {
         rosterMajorSort(roster);
         for(int i = 0; i < size; i++){
             System.out.println(roster[i]);
+        }
+    }
+
+    public void updateCreditsCompleted(Enrollment enrollment){
+        for(int i = 0;i<size;i++){
+            Student student = roster[i];
+            Profile profile = student.getProfile();
+            EnrollStudent enrollStudent = enrollment.getEnrollStudentFromProfile(profile);
+            if(enrollStudent!=null){
+                int creditsToAdd = enrollStudent.getCreditsEnrolled();
+                int creditsPreviouslyCompleted = student.getcreditCompleted();
+                roster[i].changeCreditCompleted(creditsToAdd + creditsPreviouslyCompleted);
+            }
+        }
+    }
+
+    public void printGraduated(){
+        for(int i = 0;i<size;i++){
+            if(roster[i].getcreditCompleted() >= GRADUATE_CREDITS){
+                System.out.println(roster[i]);
+            }
         }
     }
 

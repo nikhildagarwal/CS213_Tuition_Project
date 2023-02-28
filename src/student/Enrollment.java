@@ -69,6 +69,15 @@ public class Enrollment {
         return false;
     }
 
+    public EnrollStudent getEnrollStudentFromProfile(Profile profile){
+        for(int i = 0;i<size;i++){
+            if(enrollStudents[i].getProfile().equals(profile)){
+                return enrollStudents[i];
+            }
+        }
+        return null;
+    }
+
     /**
      * fetches the student from the array
      * @param enrollStudent which is the student to be fetched
