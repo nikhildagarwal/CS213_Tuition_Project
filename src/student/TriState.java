@@ -12,7 +12,6 @@ public class TriState extends NonResident{
 
 
     public static final int FULL_TIME = 12;
-    public static final int EXTRA_FULL_TIME = 16;
 
     public static final double NY_DISCOUNT = 4000;
     public static final double CT_DISCOUNT = 5000;

@@ -11,6 +11,8 @@ import java.io.File;
 public class TuitionManager {
 
     public static final int EMPTY = 0;
+    public static final int SCHOLARSHIP_INDEX = 4;
+    public static final int LENGTH_SCHOLARSHIP_INPUT = 5;
     public static final int CREDIT_ENROLLED_INDEX = 4;
     public static final int LENGTH_TO_ENROLL = 5;
     public static final int LENGTH_RESIDENT_INPUT = 6;
@@ -123,7 +125,7 @@ public class TuitionManager {
                     case "PT":
                         processPrintTuition(enrollment, roster); break;
                     case "S":
-                        processScholarship(tokens,roster);
+                        processScholarship(tokens,roster,enrollment); break;
                     default:
                         System.out.println(tokens[0] + " is an invalid command!");
                 }
@@ -131,8 +133,45 @@ public class TuitionManager {
         }
     }
 
-    private void processScholarship(String[] tokens, Roster roster){
+    private void processScholarship(String[] tokens, Roster roster, Enrollment enrollment){
 
+        if(tokens.length<LENGTH_SCHOLARSHIP_INPUT){
+            System.out.println("Missing data in line command.");
+            return;
+        }
+        Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
+        Resident tempRes = new Resident(profile,Major.CS,0,0);
+        EnrollStudent enrollStudent = enrollment.getEnrollStudent(new EnrollStudent(profile,0));
+
+        if(roster.contains(tempRes)){
+            Student temp = roster.getStudent(profile);
+            String type = temp.getType();
+            if(!type.equals("(Resident)")){
+                System.out.println(profile+" "+type+" is not eligible for the scholarship.");
+                return;
+            }
+            int scholarship = 0;
+            try{
+                scholarship = Integer.parseInt(tokens[SCHOLARSHIP_INDEX]);
+            }catch (Exception e){
+                System.out.println("Amount is not an integer.");
+                return;
+            }
+            if(scholarship<=0 || scholarship>10000){
+                System.out.println(scholarship+": invalid amount.");
+                return;
+            }
+            if(enrollStudent.getCreditsEnrolled()<12){
+                System.out.println(profile+" part time student is not eligible for the scholarship");
+                return;
+            }
+            Resident ourStudent = (Resident) temp;
+            ourStudent.setScholarship(scholarship);
+            System.out.println(profile+": scholarship amount updated.");
+
+        }else{
+            System.out.println(profile+" is not in the roster.");
+        }
     }
 
     private void processPrintTuition(Enrollment enrollment, Roster roster){
@@ -174,7 +213,7 @@ public class TuitionManager {
         }
         if(roster.getStudent(profile).isValid(creditsEnrolled)){
             if(enrollment.contains(enrollStudent)){
-                enrollment.getStudent(enrollStudent).changeCredits(creditsEnrolled);
+                enrollment.getEnrollStudent(enrollStudent).changeCredits(creditsEnrolled);
                 System.out.println(profile + " enrolled "+creditsEnrolled+" credits");
             }else{
                 enrollment.add(enrollStudent);

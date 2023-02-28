@@ -287,6 +287,8 @@ Emma Miller 2/28/2003 (Tri-state NY) enrolled 8 credits: tuition due: $10,342.40
 Duke Ellington 2/29/2004 (Tri-state NY) enrolled 14 credits: tuition due: $29,005.00
 John Doe 1/2/2007 (Resident) enrolled 11 credits: tuition due: $7,058.40
 * end of tuition due *
+
+
 Credit completed has been updated.
 ** list of students eligible for graduation **
 Bill Scanlan 5/1/1999 (01:198 CS SAS) credits completed: 141 (Senior)(non-resident)(international)

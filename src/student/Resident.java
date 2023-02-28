@@ -77,6 +77,10 @@ public class Resident extends Student {
         return tuition-scholarship;
     }
 
+    public void setScholarship(int newScholarship){
+        scholarship = newScholarship;
+    }
+
 
     public static void main (String[] args){
         Date d = new Date();
