@@ -12,7 +12,7 @@ public class TuitionManager {
 
     public static final int EMPTY = 0;
     public static final int SCHOLARSHIP_INDEX = 4;
-    public static final int LENGTH_SCHOLARSHIP_INPUT = 5;
+    public static final int LENGTH_SCHOLARSHIP_INPUT = 4;
     public static final int CREDIT_ENROLLED_INDEX = 4;
     public static final int LENGTH_TO_ENROLL = 5;
     public static final int LENGTH_RESIDENT_INPUT = 6;
@@ -164,9 +164,13 @@ public class TuitionManager {
     }
 
     private void processPrintTuition(Enrollment enrollment, Roster roster){
-        System.out.println("** Tuition due **");
-        enrollment.printTuition(roster);
-        System.out.println("* end of tuition due *");
+        if(enrollment.size()>0){
+            System.out.println("** Tuition due **");
+            enrollment.printTuition(roster);
+            System.out.println("* end of tuition due *");
+        }else{
+            System.out.println("Student roster is empty!");
+        }
     }
 
     private void processDrop(String[] tokens, Enrollment enrollment){
@@ -313,7 +317,7 @@ public class TuitionManager {
             return;
         }
         if(tokens.length<LENGTH_TRISTATE_INPUT){
-            System.out.println("Missing data in command line.");
+            System.out.println("Missing data in line command.");
             return;
         }
         String upperCaseState = tokens[STATE_INDEX].toUpperCase();
