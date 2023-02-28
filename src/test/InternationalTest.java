@@ -1,6 +1,10 @@
-package student;
+package test;
 
 import org.junit.Test;
+import student.Date;
+import student.International;
+import student.Major;
+import student.Profile;
 
 import static org.junit.Assert.*;
 
@@ -16,7 +20,7 @@ public class InternationalTest {
         //international student abroad with 12 credits
         Date d = new Date();
         Profile p = new Profile("Funcheon","Hope",d);
-        International i = new International(p,Major.MATH,12,true);
+        International i = new International(p, Major.MATH,12,true);
         //international student abroad should be $5918
         assertEquals(5918.00, i.tuitionDue(12),0);
 

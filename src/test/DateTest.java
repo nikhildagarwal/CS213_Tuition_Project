@@ -1,6 +1,7 @@
-package student;
+package test;
 
 import org.junit.Test;
+import student.Date;
 
 import static org.junit.Assert.*;
 

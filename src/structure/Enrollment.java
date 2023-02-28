@@ -1,5 +1,9 @@
-package student;
+package structure;
 
+
+import enroll.EnrollStudent;
+import student.Profile;
+import student.Student;
 
 import java.text.DecimalFormat;
 

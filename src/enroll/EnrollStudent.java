@@ -1,4 +1,6 @@
-package student;
+package enroll;
+
+import student.Profile;
 
 /**
  * Class to implement EnrollStudent object
@@ -45,7 +47,7 @@ public class EnrollStudent {
      */
     @Override
     public boolean equals(Object obj){
-        student.EnrollStudent enrollStudent = (student.EnrollStudent) obj;
+        EnrollStudent enrollStudent = (EnrollStudent) obj;
         if(profile.equals(enrollStudent.profile)){
             return true;
         }

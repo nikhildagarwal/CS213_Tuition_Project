@@ -1,6 +1,8 @@
-package student;
+package test;
 
 import org.junit.Test;
+import structure.Roster;
+import student.*;
 
 import static org.junit.Assert.*;
 
@@ -14,7 +16,7 @@ public class RosterTest {
     public void addInternationalTrue() {
         Date d = new Date();
         Profile p = new Profile("Funcheon","Hope",d);
-        International i = new International(p,Major.MATH,101,true);
+        International i = new International(p, Major.MATH,101,true);
         Roster roster = new Roster();
         assertTrue(roster.add(i));
 

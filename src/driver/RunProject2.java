@@ -1,4 +1,6 @@
-package student;
+package driver;
+
+import process.TuitionManager;
 
 /**
  * Driver class for project.

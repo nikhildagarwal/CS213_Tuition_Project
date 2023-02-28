@@ -1,4 +1,9 @@
-package student;
+package structure;
+
+import enroll.EnrollStudent;
+import student.Major;
+import student.Profile;
+import student.Student;
 
 /**
  * Roster Data Structure that holds Student Objects.

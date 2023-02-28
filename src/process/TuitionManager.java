@@ -1,4 +1,9 @@
-package student;
+package process;
+
+import enroll.EnrollStudent;
+import structure.Enrollment;
+import structure.Roster;
+import student.*;
 
 import java.util.Scanner;
 import java.io.File;
@@ -10,17 +15,64 @@ import java.io.File;
  */
 public class TuitionManager {
 
+    /**
+     * Empty = 0
+     */
     public static final int EMPTY = 0;
+
+    /**
+     * Index that holds scholarship value
+     */
     public static final int SCHOLARSHIP_INDEX = 4;
+
+    /**
+     * Proper length of scholarship value input
+     */
     public static final int LENGTH_SCHOLARSHIP_INPUT = 4;
+
+    /**
+     * Index that holds credits value
+     */
     public static final int CREDIT_ENROLLED_INDEX = 4;
+
+    /**
+     * Length of input to enroll student
+     */
     public static final int LENGTH_TO_ENROLL = 5;
+
+    /**
+     * Length of Resident input to have all data needed
+     */
     public static final int LENGTH_RESIDENT_INPUT = 6;
+
+    /**
+     * Length of Resident input to have all data needed
+     */
     public static final int LENGTH_INTERNATIONAL_INPUT = 6;
+
+    /**
+     * Length of Resident input to have all data needed
+     */
     public static final int LENGTH_TRISTATE_INPUT = 7;
+
+    /**
+     * Length of Resident input to have all data needed
+     */
     public static final int LENGTH_TRISTATE_INPUT_NO_STATE = 6;
+
+    /**
+     * Starting scholarship value
+     */
     public static final int STARTING_SCHOLARSHIP = 0;
+
+    /**
+     * Index of input that holds state value
+     */
     public static final int STATE_INDEX = 6;
+
+    /**
+     * Index to boolean value that determines abroad or not abroad
+     */
     public static final int ABROAD_INDEX = 6;
 
     /**
@@ -83,7 +135,10 @@ public class TuitionManager {
      */
     public static final String ALL_SCHOOLS = "";
 
-
+    /**
+     * Runs the entire Project form this method.
+     * Processes all line commands
+     */
     public void run(){
         Roster roster = new Roster();
         Enrollment enrollment = new Enrollment();
@@ -116,6 +171,11 @@ public class TuitionManager {
         }
     }
 
+    /**
+     * Adds creditsEnrolled to credits completed and then prints the students that are eligible to graduate.
+     * @param roster roster of students
+     * @param enrollment list of students that are enrolled
+     */
     private void processSemesterEnd(Roster roster, Enrollment enrollment){
         roster.updateCreditsCompleted(enrollment);
         System.out.println("Credit completed has been updated.");
@@ -123,13 +183,19 @@ public class TuitionManager {
         roster.printGraduated();
     }
 
+    /**
+     * Adds scholarships to Residents student objects
+     * @param tokens String[] of tokens from input arguments.
+     * @param roster Roster of students
+     * @param enrollment list of students that are enrolled
+     */
     private void processScholarship(String[] tokens, Roster roster, Enrollment enrollment){
         if(tokens.length<LENGTH_SCHOLARSHIP_INPUT){
             System.out.println("Missing data in line command.");
             return;
         }
         Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
-        Resident tempRes = new Resident(profile,Major.CS,0,0);
+        Resident tempRes = new Resident(profile, Major.CS,0,0);
         EnrollStudent enrollStudent = enrollment.getEnrollStudent(new EnrollStudent(profile,0));
 
         if(roster.contains(tempRes)){
@@ -163,6 +229,12 @@ public class TuitionManager {
         }
     }
 
+    /**
+     * Checks to see if there are students enrolled,
+     * if there are students that are enrolled, it will print the list of enrolled students and tuition that each student owes.
+     * @param enrollment list of students that are enrolled
+     * @param roster roster of students
+     */
     private void processPrintTuition(Enrollment enrollment, Roster roster){
         if(enrollment.size()>0){
             System.out.println("** Tuition due **");
@@ -173,6 +245,11 @@ public class TuitionManager {
         }
     }
 
+    /**
+     * Drops a student from enrollment.
+     * @param tokens String[] of tokens from input arguments.
+     * @param enrollment
+     */
     private void processDrop(String[] tokens, Enrollment enrollment){
         Profile profile = new Profile(tokens[LASTNAME_INDEX],tokens[FIRSTNAME_INDEX],new Date(tokens[DATE_INDEX]));
         EnrollStudent enrollStudent = new EnrollStudent(profile,0);
@@ -185,6 +262,13 @@ public class TuitionManager {
 
     }
 
+    /**
+     * Enrolls a student if All the data that is provided in the input command line is valid.
+     * Also checks to see if roster contains student we are trying to enroll. If not the method will terminate.
+     * @param tokens String[] of tokens from input arguments.
+     * @param enrollment list of students that are enrolled this semester
+     * @param roster roster of students.
+     */
     private void processEnroll(String[] tokens, Enrollment enrollment, Roster roster){
         if(tokens.length<LENGTH_TO_ENROLL){
             System.out.println("Missing data in line command.");
@@ -219,6 +303,10 @@ public class TuitionManager {
 
     }
 
+    /**
+     * Prints the enrollment list.
+     * @param enrollment enrollment DS to be printed.
+     */
     private void processPrintEnrollment(Enrollment enrollment){
         if(enrollment.size()==EMPTY){
             System.out.println("Enrollment is empty!");
@@ -244,6 +332,13 @@ public class TuitionManager {
         System.out.println(studentToRemove.getProfile() + " is not in the roster.");
     }
 
+    /**
+     * Adds a nonResident to our enrollment DS
+     * Checks to see if roster has the student.
+     * If not student will not be added to the enrollment list.
+     * @param tokens String[] of tokens from input arguments.
+     * @param roster roster of students.
+     */
     private void processAddNonResident(String[] tokens, Roster roster){
         if(tokens.length<LENGTH_RESIDENT_INPUT){
             System.out.println("Missing data in line command.");
@@ -283,6 +378,13 @@ public class TuitionManager {
         }
     }
 
+    /**
+     * Adds an International to our enrollment DS
+     * Checks to see if roster has the student.
+     * If not student will not be added to the enrollment list.
+     * @param tokens String[] of tokens from input arguments.
+     * @param roster roster of students.
+     */
     private void processAddInternational(String[] tokens, Roster roster){
         if(tokens.length<LENGTH_INTERNATIONAL_INPUT){
             System.out.println("Missing data in line command.");
@@ -311,6 +413,13 @@ public class TuitionManager {
         }
     }
 
+    /**
+     * Adds a Tri-State to our enrollment DS
+     * Checks to see if roster has the student.
+     * If not student will not be added to the enrollment list.
+     * @param tokens String[] of tokens from input arguments.
+     * @param roster roster of students.
+     */
     private void processAddTriState(String[] tokens, Roster roster){
         if(tokens.length==LENGTH_TRISTATE_INPUT_NO_STATE){
             System.out.println("Missing the state code.");
@@ -340,6 +449,13 @@ public class TuitionManager {
 
     }
 
+    /**
+     * Adds a Resident to our enrollment DS
+     * Checks to see if roster has the student.
+     * If not student will not be added to the enrollment list.
+     * @param tokens String[] of tokens from input arguments.
+     * @param roster roster of students.
+     */
     private void processAddResident(String[] tokens, Roster roster){
         if(tokens.length<LENGTH_RESIDENT_INPUT){
             System.out.println("Missing data in line command.");
@@ -441,6 +557,12 @@ public class TuitionManager {
         return newLine;
     }
 
+    /**
+     * uses string methods such as split to take inputs separately
+     * This method is parses lines from txt file that is given.
+     * @param command the command which is taken to be split
+     * @return newLine which is a string array that returns the commands
+     */
     private String[] processLineLS(String command){
         String[] line = command.split(",");
         int counter = 0;
@@ -454,6 +576,11 @@ public class TuitionManager {
         return newLine;
     }
 
+    /**
+     * Method to check is student is valid, and gives the go ahead to add student object to the roster.
+     * @param tokens String[] of tokens from input arguments.
+     * @return true if student is good to be added, false if any data point is bad.
+     */
     private boolean studentChecker(String[] tokens){
         Date dob = new Date(tokens[DATE_INDEX]);
         if(!dob.isValid()){
@@ -480,6 +607,10 @@ public class TuitionManager {
         return true;
     }
 
+    /**
+     * This method processes a txt. File of student objects and adds them to our roster.
+     * @param roster roster DS object that we want to add our students too.
+     */
     private void processLS(Roster roster){
         try{
             Scanner scanner = new Scanner(new File("studentList.txt"));
@@ -516,24 +647,62 @@ public class TuitionManager {
         }
     }
 
+    /**
+     * Makes a Non-Resident student object.
+     * @param firstName String first name
+     * @param lastName String last name
+     * @param date Date object
+     * @param major Major enum
+     * @param creditCompleted integer credits student has completed
+     * @return Non-Resident object that we have created.
+     */
     private NonResident makeNonResident(String firstName, String lastName, String date, String major, String creditCompleted){
         Major nonResMajor = grabMajorString(major);
         NonResident nonResident  = new NonResident(new Profile(lastName,firstName,new Date(date)),nonResMajor,Integer.parseInt(creditCompleted));
         return nonResident;
     }
 
+    /**
+     * Makes a Tri-State student object.
+     * @param firstName String first name
+     * @param lastName String last name
+     * @param date Date object
+     * @param major Major enum
+     * @param creditCompleted integer credits student has completed
+     * @param state String State (EX: NY)
+     * @return Tri-State object that we have created.
+     */
     private TriState makeTriState(String firstName, String lastName, String date, String major, String creditCompleted, String state){
         Major triMajor = grabMajorString(major);
         TriState triState = new TriState(new Profile(lastName,firstName,new Date(date)),triMajor,Integer.parseInt(creditCompleted),state);
         return triState;
     }
 
+    /**
+     * Makes a Resident student object.
+     * @param firstName String first name
+     * @param lastName String last name
+     * @param date Date object
+     * @param major Major enum
+     * @param creditCompleted integer credits student has completed
+     * @return Resident object that we have created.
+     */
     private Resident makeResident(String firstName, String lastName, String date, String major, String creditCompleted){
         Major resMajor = grabMajorString(major);
         Resident resident  = new Resident(new Profile(lastName,firstName,new Date(date)),resMajor,Integer.parseInt(creditCompleted),0);
         return resident;
     }
 
+    /**
+     * Makes an International student object.
+     * @param firstName String first name
+     * @param lastName String last name
+     * @param date Date object
+     * @param major Major enum
+     * @param creditCompleted integer credits student has completed
+     * @param abroad boolean Abroad var to determine if International student is studying aboard.
+     * @return International object that we have created.
+     */
     private International makeInternational(String firstName, String lastName, String date, String major, String creditCompleted,String abroad){
         Major iMajor = grabMajorString(major);
         boolean isAbroad = false;
@@ -544,12 +713,27 @@ public class TuitionManager {
         return international;
     }
 
+    /**
+     * Makes an International student object.
+     * This sets the abroad data in our International student object to default false.
+     * @param firstName String first name
+     * @param lastName String last name
+     * @param date Date object
+     * @param major Major enum
+     * @param creditCompleted integer credits student has completed
+     * @return International object that we have created.
+     */
     private International makeInternational(String firstName, String lastName, String date, String major, String creditCompleted){
         Major iMajor = grabMajorString(major);
         International international = new International(new Profile(lastName,firstName,new Date(date)),iMajor,Integer.parseInt(creditCompleted));
         return international;
     }
 
+    /**
+     * Checks to see if a given console input matches a valid major in enum class Major.
+     * @param tokens string array which is taken from the command line from the user
+     * @return major returns the major, null if major is not valid.
+     */
     private Major grabMajor(String[] tokens){
         Major major = null;
         switch(tokens[MAJOR_INDEX].toUpperCase()){
@@ -574,6 +758,11 @@ public class TuitionManager {
         return major;
     }
 
+    /**
+     * Checks to see if a given console input matches a valid major in enum class Major.
+     * Does not take token input, instead uses a string directly.
+     * @return major returns the major, null if major is not valid.
+     */
     private Major grabMajorString(String majorString){
         Major major = null;
         switch(majorString.toUpperCase()){
@@ -596,9 +785,5 @@ public class TuitionManager {
                 System.out.println("Major code invalid: "+majorString);
         }
         return major;
-    }
-
-    public static void main(String[] args){
-        new TuitionManager().run();
     }
 }
